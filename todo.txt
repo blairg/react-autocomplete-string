@@ -1,1 +1,2 @@
 Test the JSX component
+Allow the styles to be passed in to the component.

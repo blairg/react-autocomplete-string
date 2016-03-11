@@ -90,6 +90,49 @@ Run unit tests powered by [Jest](https://facebook.github.io/jest/) with the foll
 $ npm test
 ```
 
+### How to Style The Component
+
+Override the below styles. In a future release I will allow styles to be passed to the control.
+
+```shell
+.autocomplete {
+  width: 125px; }
+
+.autocompleteContainer {
+  list-style-type: none;
+  margin-left: 0px;
+  border-style: solid;
+  border-width: 1px;
+  width: 150px;
+  overflow: hidden;
+  padding: 0;
+  z-index: 99999; }
+
+.autocompleteContainer li {
+  margin-left: 0px; }
+
+.autocompleteContainer li em {
+  background: #66FF33;
+  font-weight: bold;
+  font-style: normal; }
+
+/* unvisited link */
+#autocompleteContainer a:link {
+  color: #FF0000; }
+
+/* visited link */
+#autocompleteContainer a:visited {
+  color: #00FF00; }
+
+/* mouse over link */
+#autocompleteContainer a:hover {
+  color: #FF00FF; }
+
+/* selected link */
+#autocompleteContainer a:active {
+  color: #0000FF; }
+```
+
 ### Learn More
 
  * [Getting Started with React.js](http://facebook.github.io/react/)

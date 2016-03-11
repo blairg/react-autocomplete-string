@@ -1,0 +1,59 @@
+{
+  "name": "react-autocomplete-string",
+  "private": false,
+  "version": "0.0.1",
+  "description": "React Autocomplete Control for String Arrays",
+  "repository": "react-autocomplete-string",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^13.0.0",
+    "react-addons-test-utils": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-tools": "^0.13.3",
+    "reactify": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.0",
+    "babel-eslint": "^5.0.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browser-sync": "^2.11.1",
+    "eslint": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.5.1",
+    "jest-cli": "^0.8.2",
+    "jshint": "^2.9.1",
+    "react": "^0.14.7",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "jest": {
+    "rootDir": "assets/js",
+    "scriptPreprocessor": "../config/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "react-dom",
+      "react-addons-test-utils"
+    ],
+    "collectCoverage": false
+  },
+  "scripts": {
+    "start": "gulp",
+    "test": "jshint && jest",
+    "jshint": "jshint ./src gulpfile.js",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
+}

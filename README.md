@@ -1,7 +1,6 @@
 # React Autocomplete String
 
-[![Project
-URL]()
+[[Project URL]()
 
 On Windows install python 2.7.11
 Set environment variable on Windows

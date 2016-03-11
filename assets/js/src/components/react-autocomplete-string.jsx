@@ -8,7 +8,7 @@
 import React from 'react';
 import AutoCompleteHelper from './autocomplete-helper';
 
-export default class AutoComplete extends React.Component {
+export default class react-autocomplete-string extends React.Component {
 
   constructor(props) {
         super(props);

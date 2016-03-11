@@ -1,10 +1,12 @@
 {
+  "author": "Blair Garrett <blair.garrett1@gmail.com>",
   "name": "react-autocomplete-string",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React Autocomplete Control for String Arrays",
   "repository": "react-autocomplete-string",
   "license": "MIT",
+  "main": "assets/js/src/components/react-autocomplete-string.jsx",
   "dependencies": {
     "browserify": "^13.0.0",
     "react-addons-test-utils": "^0.14.7",

@@ -1,6 +1,6 @@
 # React Autocomplete String
 
-[Project URL](https://github.com/blairg/react-autocomplete-string)
+[Project URL - Github](https://github.com/blairg/react-autocomplete-string)
 
 The current build has been tested with Node.js 5.7.0.
 
@@ -25,7 +25,7 @@ The current build has been tested with Node.js 5.7.0.
 
 ### Getting Started
 
-Just [clone](github-windows://openRepo/https://github.com/blairg/react-autocomplete-string) or [fork](https://github.com/blairg/react-autocomplete-string/fork) the repo and start hacking:
+Just [clone](https://github.com/blairg/react-autocomplete-string.git) or [fork](https://github.com/blairg/react-autocomplete-string/fork) the repo and start hacking:
 
 ```shell
 $ git clone -o upstream https://github.com/blairg/react-autocomplete-string.git MyApp
@@ -73,7 +73,7 @@ $ npm test
 
 ### How to use the autocomplete component
 
-The components accepts the following parameters: -
+The component accepts the following parameters: -
 * numresults - The number of results you want the autocomplete search to return.
 * casesensitive - True for case senstive when searching the values object or false for case insensitive.
 * values - An array of string elements.
@@ -81,7 +81,7 @@ The components accepts the following parameters: -
 
 A typical usage of the component is found below. The example below assumes an element such as a div with the id of 'react-autocomplete'.
 
-```shell
+```js
 "use strict"
 
 import React from 'react';
@@ -105,7 +105,7 @@ ReactDOM.render(<App />, document.getElementById("react-autocomplete"));
 
 Override the below styles. In a future release I will allow styles to be passed to the control.
 
-```shell
+```css
 .autocomplete {
   width: 125px; }
 
@@ -161,4 +161,4 @@ There is a public Trello board which I will be tracking new features and bugs fo
 
 ### Support
 
-Have feedback, feature request or need help? Contact me on (blair.garrett1@gmail.com)
+Have feedback, feature request or need help? Contact me on <mailto:blair.garrett1@gmail.com>

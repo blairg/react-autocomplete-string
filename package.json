@@ -2,7 +2,7 @@
   "author": "Blair Garrett <blair.garrett1@gmail.com>",
   "name": "react-autocomplete-string",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React Autocomplete Control for String Arrays",
   "repository": "react-autocomplete-string",
   "license": "MIT",

@@ -1,2 +1,5 @@
 Test the JSX component
+Add parameter for timeout on typing.
+Add parameter for minimum number of strokes before searching.
+Allow the values object to be a map not just an array of elements. Can be used to store value and hyperlink of say a page to link to
 Allow the styles to be passed in to the component.

@@ -1,15 +1,8 @@
 # React Autocomplete String
 
-[[Project URL]()
+[Project URL](https://github.com/blairg/react-autocomplete-string)
 
-On Windows install python 2.7.11
-Set environment variable on Windows
-npm install gulp -g
-npm install react
-npm install react-tools -g
-npm install bower -gnpm install gulp-newer
-npm install
-
+The current build has been tested with Node.js 5.7.0.
 
 > This project template is an autocomplete component for React.
 
@@ -37,8 +30,9 @@ Just [clone](github-windows://openRepo/https://github.com/blairg/react-autocompl
 ```shell
 $ git clone -o upstream https://github.com/blairg/react-autocomplete-string.git MyApp
 $ cd MyApp
-$ npm install -g gulp           # Install Gulp task runner globally
-$ npm install                   # Install Node.js components listed in ./package.json
+$ npm install gulp -g                          # Install Gulp task runner globally
+$ npm install bower -gnpm                      # Install Bower globally
+$ npm install                                  # Install Node.js components listed in ./package.json
 ```
 
 ### How to Build
@@ -75,6 +69,36 @@ Run unit tests powered by [Jest](https://facebook.github.io/jest/) with the foll
 
 ```shell
 $ npm test
+```
+
+### How to use the autocomplete component
+
+The components accepts the following parameters: -
+* numresults - The number of results you want the autocomplete search to return.
+* casesensitive - True for case senstive when searching the values object or false for case insensitive.
+* values - An array of string elements.
+* search - An enum for the type of search being either 'startswith' (The beginning of the string) or 'anywhere' (Anywhere within the string).
+
+A typical usage of the component is found below. The example below assumes an element such as a div with the id of 'react-autocomplete'.
+
+```shell
+"use strict"
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import AutoComplete from './react-autocomplete-string.jsx';
+
+const values = ["Aberdeen", "Almondbury", "Bath", "Bradford", "Basingstoke", "Huddersfield",
+                "Halifax", "Hull", "Honley", "Harrogate", "Hadfield", "Holmfirth", "London",
+                "Leeds", "Manchester", "Nottingham", "Plymouth", "Wolverhampton"];
+
+class App extends React.Component {
+  render() {
+    return <AutoComplete values={values} numresults={2} search={'anywhere'} casesensitive={false} />;
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("react-autocomplete"));
 ```
 
 ### How to Style The Component
@@ -119,6 +143,12 @@ Override the below styles. In a future release I will allow styles to be passed 
 #autocompleteContainer a:active {
   color: #0000FF; }
 ```
+
+### Future development
+
+There is a public Trello board which I will be tracking new features and bugs for the component. Currently it's only me on the project, but if anyone else comes board, then I add others to the board and the Github project.
+
+[Trello Board](https://trello.com/b/S6afejn6)
 
 ### Learn More
 

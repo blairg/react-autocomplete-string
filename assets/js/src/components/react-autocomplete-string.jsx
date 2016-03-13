@@ -39,7 +39,7 @@ export default class react-autocomplete-string extends React.Component {
 
     if(searchType === undefined)
     {
-      searchType = 'startsWith';
+      searchType = 'startswith';
     }
 
     if(keyedValue === '')

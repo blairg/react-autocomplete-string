@@ -8,29 +8,39 @@
 import React from 'react';
 import AutoCompleteHelper from './autocomplete-helper';
 
-export default class react-autocomplete-string extends React.Component {
+export default class reactautocompletestring extends React.Component {
 
   constructor(props) {
-        super(props);
-        this.state = {
-            NumResults : props.numresults,
-            CaseSensitive : props.casesensitive,
-            Values : props.values,
-            SearchType : props.search,
-            FoundValues: [],
-            SelectedValue: '',
-            KeyedValue: ''
-        };
+      super(props);
+      this.state = {
+          NumResults : props.numresults,
+          CaseSensitive : props.casesensitive,
+          Values : props.values,
+          SearchType : props.search,
+          MinimumKeyStrokes : props.minimumkeystrokes,
+          FoundValues: [],
+          SelectedValue: '',
+          KeyedValue: ''
+      };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSelectOption = this.handleSelectOption.bind(this);
-    }
+      //bind event handlers
+      this.handleSelectOption = this.handleSelectOption.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange(e) {
     e.preventDefault();
-
     var keyedValue = e.target.value;
-    var rawKeyedValue = keyedValue;
+
+    if(keyedValue === '')
+    {
+      this.setState({FoundValues: []});
+      this.setState({SelectedValue: ''});
+      this.setState({KeyedValue: ''});
+      return;
+    }
+
+    var minimumKeyStrokes = this.state.MinimumKeyStrokes;
     var numResults = this.state.NumResults !== undefined ? this.state.NumResults : 0;
     var foundValues = [];
     var caseSensitive = AutoCompleteHelper.isCaseSenstive(this.state.CaseSensitive);
@@ -42,19 +52,23 @@ export default class react-autocomplete-string extends React.Component {
       searchType = 'startswith';
     }
 
-    if(keyedValue === '')
-    {
-      this.setState({FoundValues: []});
-      this.setState({SelectedValue: ''});
-      this.setState({KeyedValue: ''});
-      return;
-    }
-
     var selectedValue = this.state.SelectedValue;
 
     if(selectedValue !== '')
     {
       this.setState({SelectedValue: keyedValue});
+    }
+
+    if(minimumKeyStrokes !== undefined)
+    {
+      var longEnough = AutoCompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumKeyStrokes);
+
+      if(!longEnough)
+      {
+        this.setState({FoundValues: []});
+        this.setState({KeyedValue: keyedValue});
+        return;
+      }
     }
 
     switch(searchType)
@@ -70,7 +84,7 @@ export default class react-autocomplete-string extends React.Component {
     if(foundValues.length > 0)
     {
       this.setState({FoundValues: foundValues});
-      this.setState({KeyedValue: rawKeyedValue});
+      this.setState({KeyedValue: keyedValue});
       return;
     }
 

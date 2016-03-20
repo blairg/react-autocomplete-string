@@ -3,11 +3,11 @@
 jest.dontMock('../react-autocomplete-string.jsx');
 jest.dontMock('../autocomplete-helper');
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
+//var React = require('react');
+//var ReactDOM = require('react-dom');
+//var TestUtils = require('react-addons-test-utils');
 
-var Autocomplete = require('../react-autocomplete-string.jsx');
+//var Autocomplete = require('../react-autocomplete-string.jsx');
 
 describe('react-autocomplete-string', function() {
 
@@ -25,10 +25,10 @@ describe('react-autocomplete-string', function() {
     });
 
   afterEach(function() {
-    if (autocompleteControl && autocompleteControl.isMounted()) {
+    //if (autocompleteControl && autocompleteControl.isMounted()) {
       // Only components with a parent will be unmounted
       //React.unmountComponentAtNode(React.findDOMNode(autocompleteControl).parentNode);
-    }
+    //}
   });
 
 

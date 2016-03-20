@@ -196,3 +196,67 @@ describe('startsWithSurrondEm tests', function() {
   });
 
 });
+
+describe('numberOfKeyStrokesReached tests', function() {
+
+  it('should return false as the length of "Holm" is less than 5', function() {
+
+      var keyedValue = "Holm";
+      var minimumNumberOfStrokesReached = 5;
+      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+
+      expect(minimumReached).toBe(false);
+
+  });
+
+  it('should return true as the length of "Hol" is equal to 3', function() {
+
+      var keyedValue = "Hol";
+      var minimumNumberOfStrokesReached = 3;
+      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+
+      expect(minimumReached).toBe(true);
+
+  });
+
+  it('should return true as the length of "Hol" is greater than 2', function() {
+
+      var keyedValue = "Hol";
+      var minimumNumberOfStrokesReached = 2;
+      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+
+      expect(minimumReached).toBe(true);
+
+  });
+
+  it('should return false as keyedValue is undefined', function() {
+
+      var keyedValue = undefined;
+      var minimumNumberOfStrokesReached = 2;
+      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+
+      expect(minimumReached).toBe(false);
+
+  });
+
+  it('should return false as minimumNumberOfStrokesReached is undefined', function() {
+
+      var keyedValue = "Hol";
+      var minimumNumberOfStrokesReached = undefined;
+      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+
+      expect(minimumReached).toBe(false);
+
+  });
+
+  it('should return false as minimumNumberOfStrokesReached is nan', function() {
+
+      var keyedValue = "Hol";
+      var minimumNumberOfStrokesReached = "Not a number";
+      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+
+      expect(minimumReached).toBe(false);
+
+  });
+
+});

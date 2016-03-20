@@ -10,6 +10,7 @@ var browserSync  = require('browser-sync');
 var babel      = require('gulp-babel');
 var babelify   = require('babelify');
 var browserify = require('browserify');  // Bundles JS.
+var concat     = require('gulp-concat');
 var eslint     = require('gulp-eslint');
 var gulp       = require('gulp');
 var minifyCss  = require('gulp-minify-css');
@@ -21,9 +22,9 @@ var uglify     = require('gulp-uglify');
 
 // Define some paths.
 var paths = {
-  css: ['assets/scss/components/*.scss'],
+  css: ['./assets/scss/components/*.scss'],
   app_js: ['./assets/js/src/components/app.jsx'],
-  js: ['assets/js/src/**/*.j*']
+  js: ['./assets/js/src/**/*.j*']
 };
 
 gulp.task('eslint', function() {
@@ -34,14 +35,13 @@ gulp.task('eslint', function() {
 // Our CSS task. It finds all our Stylus files and compiles them.
 gulp.task('css', function() {
   return gulp.src(paths.css)
+    .pipe(concat('bundle.css'))
     .pipe(sass())
-    .pipe(rename('bundle.css'))
     .pipe(gulp.dest('./build'));
 });
 
 // Our JS task. It will Browserify our code and compile React JSX files.
 gulp.task('js', function() {
-
   // Browserify/bundle the JS.
   browserify(paths.app_js)
     .transform('babelify', {presets: ['es2015', 'react']})

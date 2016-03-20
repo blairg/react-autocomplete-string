@@ -96,4 +96,14 @@ autocompleteHelper.startsWithSurrondEm = function(valueToFind, fullValue){
 
 };
 
+autocompleteHelper.numberOfKeyStrokesReached = function(keyedValue, minimumNumberOfStrokesReached){
+
+    if(keyedValue === undefined || minimumNumberOfStrokesReached === undefined || isNaN(minimumNumberOfStrokesReached))
+    {
+      return false;
+    }
+
+    return keyedValue.length >= minimumNumberOfStrokesReached;
+};
+
 module.exports = autocompleteHelper;

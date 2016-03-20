@@ -78,6 +78,7 @@ The component accepts the following parameters: -
 * casesensitive - True for case senstive when searching the values object or false for case insensitive.
 * values - An array of string elements.
 * search - An enum for the type of search being either 'startswith' (The beginning of the string) or 'anywhere' (Anywhere within the string).
+* minimumkeystrokes - The number (Integer) of key strokes before the results are rendered.
 
 A typical usage of the component is found below. The example below assumes an element such as a div with the id of 'react-autocomplete'.
 
@@ -94,7 +95,7 @@ const values = ["Aberdeen", "Almondbury", "Bath", "Bradford", "Basingstoke", "Hu
 
 class App extends React.Component {
   render() {
-    return <AutoComplete values={values} numresults={2} search={'anywhere'} casesensitive={false} />;
+    return <AutoComplete values={values} numresults={2} search={'anywhere'} casesensitive={false} minimumkeystrokes={2} />;
   }
 }
 

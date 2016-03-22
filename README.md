@@ -1,6 +1,7 @@
 # React Autocomplete String
 
-[Project URL - Github](https://github.com/blairg/react-autocomplete-string)
+[Source Code - Github](https://github.com/blairg/react-autocomplete-string)
+[Demo Site](http://reactautocompletestring.azurewebsites.net)
 
 The current build has been tested with Node.js 5.7.0.
 
@@ -79,6 +80,7 @@ The component accepts the following parameters: -
 * values - An array of string elements.
 * search - An enum for the type of search being either 'startswith' (The beginning of the string) or 'anywhere' (Anywhere within the string).
 * minimumkeystrokes - The number (Integer) of key strokes before the results are rendered.
+* placeholder - Placeholder text for the search box.
 
 A typical usage of the component is found below. The example below assumes an element such as a div with the id of 'react-autocomplete'.
 
@@ -95,7 +97,8 @@ const values = ["Aberdeen", "Almondbury", "Bath", "Bradford", "Basingstoke", "Hu
 
 class App extends React.Component {
   render() {
-    return <AutoComplete values={values} numresults={2} search={'anywhere'} casesensitive={false} minimumkeystrokes={2} />;
+    return <AutoComplete values={values} numresults={2} search={'anywhere'} casesensitive={false} minimumkeystrokes={2}
+                         placeholder={'search by town...'} />;
   }
 }
 
@@ -162,4 +165,4 @@ There is a public Trello board which I will be tracking new features and bugs fo
 
 ### Support
 
-Have feedback, feature request or need help? Contact me on <mailto:blair.garrett1@gmail.com>
+Have feedback, feature request or need help? Contact me on [email](mailto:blair.garrett1@gmail.com)

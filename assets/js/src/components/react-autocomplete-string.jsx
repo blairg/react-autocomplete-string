@@ -18,6 +18,7 @@ export default class reactautocompletestring extends React.Component {
           Values : props.values,
           SearchType : props.search,
           MinimumKeyStrokes : props.minimumkeystrokes,
+          PlaceHolder : props.placeholder,
           FoundValues: [],
           SelectedValue: '',
           KeyedValue: ''
@@ -105,12 +106,13 @@ export default class reactautocompletestring extends React.Component {
 
   render() {
       var foundValuesLength = this.state.FoundValues.length;
-      var ulStyle = foundValuesLength > 0 ? 'autocompleteContainer' : '';
+      var ulStyle = foundValuesLength > 0 ? 'autocompleteContainerUl' : '';
       var values = foundValuesLength > 0 ? this.state.FoundValues : [];
       var selectedValue = this.state.SelectedValue;
       var keyedValue = this.state.KeyedValue;
       var searchType = this.state.SearchType;
       var caseSensitive = AutoCompleteHelper.isCaseSenstive(this.state.CaseSensitive);
+      var placeHolder = this.state.PlaceHolder !== undefined ? this.state.PlaceHolder : '';
 
       if(selectedValue === '')
       {
@@ -119,23 +121,25 @@ export default class reactautocompletestring extends React.Component {
 
       return (
         <div id="autocompleteContainer" className="autocomplete">
-          <input type="input" className="TextBox-input" ref="inputAutocomplete" key="inputAutocomplete"
-                 onChange={this.handleChange} value={selectedValue} />
-                 <ul className={ulStyle} ref="selectAutocomplete">
-                   {values.map(function(result) {
-                     switch(searchType)
-                     {
-                       case 'anywhere' :
-                          var emsApplied = AutoCompleteHelper.replaceAll(keyedValue, result, caseSensitive);
-                          return <li key={result}><a href="#" onClick={this.handleSelectOption} value={result}><span dangerouslySetInnerHTML={{__html: emsApplied}} /></a></li>;
-                       break;
-                       case 'startsWith' :
-                          var emsApplied = AutoCompleteHelper.startsWithSurrondEm(keyedValue, result);
-                          return <li key={result}><a href='#' onClick={this.handleSelectOption} value={result}><span dangerouslySetInnerHTML={{__html: emsApplied}} /></a></li>;
-                       break;
-                     }
-                   }.bind(this))}
-                 </ul>
+          <input type="search" className="TextBox-input" ref="inputAutocomplete" key="inputAutocomplete"
+                 onChange={this.handleChange} value={selectedValue} placeholder={placeHolder} />
+                 <div id="resultsList">
+                   <ul className={ulStyle} ref="selectAutocomplete">
+                     {values.map(function(result) {
+                       switch(searchType)
+                       {
+                         case 'anywhere' :
+                            var emsApplied = AutoCompleteHelper.replaceAll(keyedValue, result, caseSensitive);
+                            return <li key={result}><a href="#" onClick={this.handleSelectOption} value={result}><span dangerouslySetInnerHTML={{__html: emsApplied}} /></a></li>;
+                         break;
+                         case 'startsWith' :
+                            var emsApplied = AutoCompleteHelper.startsWithSurrondEm(keyedValue, result);
+                            return <li key={result}><a href='#' onClick={this.handleSelectOption} value={result}><span dangerouslySetInnerHTML={{__html: emsApplied}} /></a></li>;
+                         break;
+                       }
+                     }.bind(this))}
+                   </ul>
+                 </div>
          </div>
       );
   }

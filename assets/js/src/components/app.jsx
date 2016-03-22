@@ -10,7 +10,8 @@ const values = ["Aberdeen", "Almondbury", "Bath", "Bradford", "Basingstoke", "Hu
 
 class App extends React.Component {
   render() {
-    return <AutoComplete values={values} numresults={2} search={'anywhere'} casesensitive={false} minimumkeystrokes={3} />;
+    return <AutoComplete values={values} numresults={2} search={'anywhere'} casesensitive={false} minimumkeystrokes={2}
+                         placeholder={'town...'} />;
   }
 }
 

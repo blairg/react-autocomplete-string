@@ -22,7 +22,7 @@ var uglify     = require('gulp-uglify');
 
 // Define some paths.
 var paths = {
-  css: ['./assets/scss/components/*.scss'],
+  css: ['./assets/scss/*.scss'],
   app_js: ['./assets/js/src/components/app.jsx'],
   js: ['./assets/js/src/**/*.j*']
 };

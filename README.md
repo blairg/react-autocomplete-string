@@ -111,42 +111,87 @@ ReactDOM.render(<App />, document.getElementById("react-autocomplete"));
 Override the below styles. In a future release I will allow styles to be passed to the control.
 
 ```css
-.autocomplete {
-  width: 125px; }
+searchTextPlaceholderColor: #303a28;
+$backgroundColor: #343434;
 
-.autocompleteContainer {
-  list-style-type: none;
-  margin-left: 0px;
-  border-style: solid;
-  border-width: 1px;
-  width: 150px;
-  overflow: hidden;
-  padding: 0;
-  z-index: 99999; }
+body{
+  background: $backgroundColor;
+}
 
-.autocompleteContainer li {
-  margin-left: 0px; }
+.reactLogo{
+  position: relative;
+  left: 40%;
+  top: 10px;
+}
 
-.autocompleteContainer li em {
-  background: #66FF33;
-  font-weight: bold;
-  font-style: normal; }
+#autocompleteContainer{
+    width: 94%;
+    display: block;
+    margin-left: 3%;
+    margin-right: 3%;
+    max-width: 100%;
+    margin-top: 5%;
+    text-align: center;
 
-/* unvisited link */
-#autocompleteContainer a:link {
-  color: #FF0000; }
+    #resultsList{
+        position: relative;
+        background-color: #FFFFFF;
+        width: 80%;
+        left: 10%;
+        top: 0%;
+        margin-top: -1%;
 
-/* visited link */
-#autocompleteContainer a:visited {
-  color: #00FF00; }
+        li {
+          margin-left: -4%;
+          text-align: center;
+          list-style-type: none;
 
-/* mouse over link */
-#autocompleteContainer a:hover {
-  color: #FF00FF; }
+          &:hover{
+            background-color: #c4baba;
+          }
 
-/* selected link */
-#autocompleteContainer a:active {
-  color: #0000FF; }
+          em{
+            font-style: normal;
+            font-weight: bold;
+          }
+
+          a{
+            text-decoration: none;
+            color: $backgroundColor;
+          }
+        }
+    }
+}
+
+.TextBox-input{
+  color: #9DDD66;
+  background-color: #0E0F0D;
+  border-radius: 25px;
+  width: 80%;
+  height: 5%;
+  font-size: 30pt;
+  border: 2px solid $searchTextPlaceholderColor;
+  padding-left: 1%;
+  text-align: center;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:   $searchTextPlaceholderColor;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    $searchTextPlaceholderColor;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    $searchTextPlaceholderColor;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    $searchTextPlaceholderColor;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color:     $searchTextPlaceholderColor;
+}
 ```
 
 ### Future development

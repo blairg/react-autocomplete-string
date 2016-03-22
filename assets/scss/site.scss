@@ -1,9 +1,15 @@
-// ariables:
+// variables:
 $searchTextPlaceholderColor: #303a28;
 $backgroundColor: #343434;
 
 body{
   background: $backgroundColor;
+}
+
+.reactLogo{
+  position: relative;
+  left: 40%;
+  top: 10px;
 }
 
 #autocompleteContainer{
@@ -12,7 +18,7 @@ body{
     margin-left: 3%;
     margin-right: 3%;
     max-width: 100%;
-    margin-top: 23%;
+    margin-top: 5%;
     text-align: center;
 
     #resultsList{
@@ -73,4 +79,36 @@ body{
 }
 :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
   color:     $searchTextPlaceholderColor;
+}
+
+
+.typed-element{
+    position: relative;
+    top: 50px;
+    left: 39%;
+    color: #9DDD66;
+    height: 20px;
+    cursor: text;
+    font-size: 15px;
+    font-family: Consolas, "Liberation Mono", Menlo, Monaco, Courier, monospace;
+    opacity: 1;
+    -webkit-animation: blink 0.7s;
+    -moz-animation: blink 0.7s;
+    animation: blink 0.7s;
+    width: 40%;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }

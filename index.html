@@ -6,15 +6,33 @@
     <title>ReactJS Autocomplete String</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="build/bundle.css">
+    <link rel="stylesheet" href="build/bundle.min.css">
     <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/ >
   </head>
   <body>
     <!--[if lt IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <div class="reactLogo">
+      <a href="https://www.npmjs.com/package/react-autocomplete-string">
+        <img src="build/reactimg.png" alt="React JS Logo" />
+      </a>
+    </div>
+    <a href="https://www.npmjs.com/package/react-autocomplete-string">
+      <div class="typed-element"></div>
+    </a>
     <div id="react-autocomplete"></div>
-    <script src="build/bundle.js"></script>
+    <script src="build/bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script src="build/typed.min.js"></script>
+    <script>
+      $(document).ready(function(){
+         $(".typed-element").typed({
+            strings: ["$ npm i react-autocomplete-string"],
+            typeSpeed: 40
+          });
+      });
+    </script>
 
     <!-- Google Analytics -->
     <script>

@@ -1,6 +1,7 @@
 # React Autocomplete String
 
 [Source Code - Github](https://github.com/blairg/react-autocomplete-string)
+
 [Demo Site](http://reactautocompletestring.azurewebsites.net)
 
 The current build has been tested with Node.js 5.7.0.

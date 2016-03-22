@@ -54,13 +54,13 @@ gulp.task('minify', function() {
   //js
   gulp.src('build/bundle.js')
     .pipe(uglify())
-    .pipe(rename('bundle-min.js'))
+    .pipe(rename('bundle.min.js'))
     .pipe(gulp.dest('build/'));
 
   //css
-  gulp.src('assets/css/components/*.css')
+  gulp.src('build/bundle.css')
     .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(rename('bundle-min.css'))
+    .pipe(rename('bundle.min.css'))
     .pipe(gulp.dest('build/'));
 });
 

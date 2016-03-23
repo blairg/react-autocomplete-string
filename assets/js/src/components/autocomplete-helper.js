@@ -12,7 +12,7 @@ autocompleteHelper.replaceAll = function(valueToFind, stringToReplaceValueIn, ca
   var caseSensitiveFlag = caseSensitive ? 'g' : 'i';
 
   var returnValue = stringToReplaceValueIn.replace(new RegExp(valueToFind, caseSensitiveFlag), function (match) {
-    return '<em>' + match + '</em>';
+    return "<em data='" + stringToReplaceValueIn + "'>" + match + "</em>";
   });
 
   return returnValue;
@@ -21,6 +21,7 @@ autocompleteHelper.replaceAll = function(valueToFind, stringToReplaceValueIn, ca
 autocompleteHelper.findMatchesInArray = function(valueToFind, caseSensitive, listOfValues, numResultsToReturn){
 
     var foundValues = [];
+    var listOfValues = listOfValues.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
 
     for(var i = 0; i < listOfValues.sort().length; i++)
     {
@@ -53,6 +54,7 @@ autocompleteHelper.findMatchesStartsWithInArray = function(valueToFind, caseSens
   var foundValues = [];
   var foundStartingLetter = false;
   var keyedValueCaseApplied = caseSensitive ? valueToFind : valueToFind.toLowerCase();
+  var listOfValues = listOfValues.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
   //done in the event of a large list to improve performance.
   var listOfValues = (valueToFind.toLowerCase().substring(0,1) < 'm') ? listOfValues.sort()
                                                                       : listOfValues.reverse();
@@ -88,11 +90,8 @@ autocompleteHelper.findMatchesStartsWithInArray = function(valueToFind, caseSens
 
 autocompleteHelper.startsWithSurrondEm = function(valueToFind, fullValue){
 
-    var firstKeyedChar = valueToFind.substring(0, 1);
-    valueToFind = firstKeyedChar + valueToFind.substring(1, valueToFind.length);
-    var valueToFindRemoved = fullValue.replace(valueToFind, '');
-
-    return '<em>' + valueToFind + '</em>' + valueToFindRemoved + '</span>';
+    var getStartingChars = fullValue.substring(0, valueToFind.length);
+    return "<em data='" + fullValue + "'>" + getStartingChars + "</em>" + fullValue.substring(valueToFind.length);
 
 };
 

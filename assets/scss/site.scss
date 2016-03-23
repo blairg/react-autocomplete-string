@@ -6,6 +6,10 @@ body{
   background: $backgroundColor;
 }
 
+a{
+  text-decoration: none;
+}
+
 .reactLogo{
   position: relative;
   left: 40%;
@@ -80,7 +84,6 @@ body{
 :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
   color:     $searchTextPlaceholderColor;
 }
-
 
 .typed-element{
     position: relative;

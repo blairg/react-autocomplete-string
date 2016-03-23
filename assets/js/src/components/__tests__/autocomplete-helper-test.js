@@ -23,11 +23,11 @@ describe('isCaseSenstive tests', function() {
 describe('replaceAll tests', function() {
 
  it('should find Hud in Huddersfield - case insensitive', function() {
-   expect(autocompleteHelper.replaceAll("Hud", "Huddersfield")).toBe("<em>Hud</em>dersfield");
+   expect(autocompleteHelper.replaceAll("Hud", "Huddersfield")).toBe("<em data='Huddersfield'>Hud</em>dersfield");
  });
 
  it('should find Hud in Huddersfield - case sensitive', function() {
-   expect(autocompleteHelper.replaceAll("Hud", "Huddersfield", true)).toBe("<em>Hud</em>dersfield");
+   expect(autocompleteHelper.replaceAll("Hud", "Huddersfield", true)).toBe("<em data='Huddersfield'>Hud</em>dersfield");
  });
 
  it('should not find Hud in Huddersfield - case sensitive', function() {
@@ -35,11 +35,11 @@ describe('replaceAll tests', function() {
  });
 
  it('should find field in Huddersfield - case sensitive', function() {
-   expect(autocompleteHelper.replaceAll("field", "Huddersfield", true)).toBe("Hudders<em>field</em>");
+   expect(autocompleteHelper.replaceAll("field", "Huddersfield", true)).toBe("Hudders<em data='Huddersfield'>field</em>");
  });
 
  it('should find field in Huddersfield - case insensitive', function() {
-   expect(autocompleteHelper.replaceAll("field", "Huddersfield")).toBe("Hudders<em>field</em>");
+   expect(autocompleteHelper.replaceAll("field", "Huddersfield")).toBe("Hudders<em data='Huddersfield'>field</em>");
  });
 
 });
@@ -155,43 +155,53 @@ describe('findMatchesStartsWithInArray tests', function() {
 
 describe('startsWithSurrondEm tests', function() {
 
-  it('should match <em>Alm</em>ondbury</span>', function() {
+  it('should match <em>Alm</em>ondbury', function() {
 
       var valueToFind = "Alm";
       var valueToSurrond = "Almondbury";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>Alm</em>ondbury</span>");
+      expect(surrondedValue).toBe("<em>Alm</em>ondbury");
 
   });
 
-  it('should match <em>Almondbury</em></span>', function() {
+  it('should match <em>Almondbury</em>', function() {
 
       var valueToFind = "Almondbury";
       var valueToSurrond = "Almondbury";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>Almondbury</em></span>");
+      expect(surrondedValue).toBe("<em>Almondbury</em>");
 
   });
 
-  it('should match <em>lee</em></span>', function() {
+  it('should match <em>lee</em>', function() {
 
       var valueToFind = "le";
       var valueToSurrond = "lee";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>le</em>e</span>");
+      expect(surrondedValue).toBe("<em>le</em>e");
 
   });
 
-  it('should match <em>HALIFAX</em></span>', function() {
+  it('should match <em>HALIFAX</em>', function() {
 
       var valueToFind = "HALIFA";
       var valueToSurrond = "HALIFAX";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>HALIFA</em>X</span>");
+      expect(surrondedValue).toBe("<em>HALIFA</em>X");
+
+  });
+
+  it('should match <em>HALIFAX</em>', function() {
+
+      var valueToFind = "ha";
+      var valueToSurrond = "HALIFAX";
+      var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
+
+      expect(surrondedValue).toBe("<em>HA</em>LIFAX");
 
   });
 

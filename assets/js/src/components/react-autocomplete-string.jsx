@@ -62,9 +62,9 @@ export default class reactautocompletestring extends React.Component {
 
     if(minimumKeyStrokes !== undefined)
     {
-      var longEnough = AutoCompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumKeyStrokes);
+      var enoughKeyStrokes = AutoCompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumKeyStrokes);
 
-      if(!longEnough)
+      if(!enoughKeyStrokes)
       {
         this.setState({FoundValues: []});
         this.setState({KeyedValue: keyedValue});
@@ -95,7 +95,12 @@ export default class reactautocompletestring extends React.Component {
 
   handleSelectOption(e){
       e.preventDefault();
-      var value = e.target.innerText;
+
+      console.log('here');
+      console.log(e.target.innerText);
+      console.dir(e.target);
+
+      var value = e.target.nodeName === "EM" ? e.target.attributes.data.value : e.target.innerText;
 
       if(value !== '')
       {
@@ -130,11 +135,11 @@ export default class reactautocompletestring extends React.Component {
                        {
                          case 'anywhere' :
                             var emsApplied = AutoCompleteHelper.replaceAll(keyedValue, result, caseSensitive);
-                            return <li key={result}><a href="#" onClick={this.handleSelectOption} value={result}><span dangerouslySetInnerHTML={{__html: emsApplied}} /></a></li>;
+                            return <li key={result} onClick={this.handleSelectOption}><span dangerouslySetInnerHTML={{__html: emsApplied}} /></li>;
                          break;
-                         case 'startsWith' :
+                         case 'startswith' :
                             var emsApplied = AutoCompleteHelper.startsWithSurrondEm(keyedValue, result);
-                            return <li key={result}><a href='#' onClick={this.handleSelectOption} value={result}><span dangerouslySetInnerHTML={{__html: emsApplied}} /></a></li>;
+                            return <li key={result} onClick={this.handleSelectOption}><span dangerouslySetInnerHTML={{__html: emsApplied}} /></li>;
                          break;
                        }
                      }.bind(this))}

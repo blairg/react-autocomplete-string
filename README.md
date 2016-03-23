@@ -111,7 +111,7 @@ ReactDOM.render(<App />, document.getElementById("react-autocomplete"));
 Override the below styles. In a future release I will allow styles to be passed to the control.
 
 ```css
-searchTextPlaceholderColor: #303a28;
+$searchTextPlaceholderColor: #303a28;
 $backgroundColor: #343434;
 
 body{

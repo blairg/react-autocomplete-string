@@ -22,9 +22,12 @@ var uglify     = require('gulp-uglify');
 
 // Define some paths.
 var paths = {
-  css: ['./assets/scss/*.scss'],
-  app_js: ['./assets/js/src/components/app.jsx'],
-  js: ['./assets/js/src/**/*.j*']
+  css:      ['./assets/scss/*.scss'],
+  app_js:   ['./assets/js/src/components/app.jsx'],
+  js_src:   ['./assets/js/src/'],
+  js:       ['./assets/js/src/**/*.j*'],
+  vendor:   ['./assets/js/src/vendor/typed.min.js'],
+  demo:   ['./assets/js/src/components/demo.js']
 };
 
 gulp.task('eslint', function() {
@@ -42,12 +45,12 @@ gulp.task('css', function() {
 
 // Our JS task. It will Browserify our code and compile React JSX files.
 gulp.task('js', function() {
-  // Browserify/bundle the JS.
-  browserify(paths.app_js)
-    .transform('babelify', {presets: ['es2015', 'react']})
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./build'));
+  //return browserify([paths.js_src[0] + 'vendor/typed.min.js', paths.app_js])
+  return browserify([paths.vendor, paths.demo, paths.app_js])
+         .transform('babelify', {presets: ['es2015', 'react']})
+         .bundle()
+         .pipe(source('bundle.js'))
+         .pipe(gulp.dest('./build'));
 });
 
 gulp.task('minify', function() {

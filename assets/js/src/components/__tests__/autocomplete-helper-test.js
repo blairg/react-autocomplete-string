@@ -161,7 +161,7 @@ describe('startsWithSurrondEm tests', function() {
       var valueToSurrond = "Almondbury";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>Alm</em>ondbury");
+      expect(surrondedValue).toBe("<em data='Almondbury'>Alm</em>ondbury");
 
   });
 
@@ -171,7 +171,7 @@ describe('startsWithSurrondEm tests', function() {
       var valueToSurrond = "Almondbury";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>Almondbury</em>");
+      expect(surrondedValue).toBe("<em data='Almondbury'>Almondbury</em>");
 
   });
 
@@ -181,7 +181,7 @@ describe('startsWithSurrondEm tests', function() {
       var valueToSurrond = "lee";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>le</em>e");
+      expect(surrondedValue).toBe("<em data='lee'>le</em>e");
 
   });
 
@@ -191,7 +191,7 @@ describe('startsWithSurrondEm tests', function() {
       var valueToSurrond = "HALIFAX";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>HALIFA</em>X");
+      expect(surrondedValue).toBe("<em data='HALIFAX'>HALIFA</em>X");
 
   });
 
@@ -201,7 +201,7 @@ describe('startsWithSurrondEm tests', function() {
       var valueToSurrond = "HALIFAX";
       var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
 
-      expect(surrondedValue).toBe("<em>HA</em>LIFAX");
+      expect(surrondedValue).toBe("<em data='HALIFAX'>HA</em>LIFAX");
 
   });
 

@@ -13,9 +13,12 @@ var browserify = require('browserify');  // Bundles JS.
 var concat     = require('gulp-concat');
 var eslint     = require('gulp-eslint');
 var gulp       = require('gulp');
+var htmlmin    = require('gulp-htmlmin');
+var inject     = require('gulp-inject');
 var minifyCss  = require('gulp-minify-css');
 var reload     = browserSync.reload;
 var rename     = require('gulp-rename');
+var runSequence = require('run-sequence');
 var sass       = require('gulp-sass');
 var source     = require('vinyl-source-stream');
 var uglify     = require('gulp-uglify');
@@ -27,7 +30,7 @@ var paths = {
   js_src:   ['./assets/js/src/'],
   js:       ['./assets/js/src/**/*.j*'],
   vendor:   ['./assets/js/src/vendor/typed.min.js'],
-  demo:   ['./assets/js/src/components/demo.js']
+  demo:     ['./assets/js/src/components/demo.js']
 };
 
 gulp.task('eslint', function() {
@@ -43,9 +46,22 @@ gulp.task('css', function() {
     .pipe(gulp.dest('./build'));
 });
 
+//inject inline css into the index.html
+gulp.task('injectcss', function() {
+  gulp.src('./index.html')
+    .pipe(inject(gulp.src(['./build/bundle.min.css']), {
+      starttag: '<!-- inject:head:css -->',
+      transform: function (filePath, file) {
+        // return file contents as string
+        return "<style>" + file.contents.toString('utf8') + "</style>";
+      }
+    }))
+    .pipe(gulp.dest('build/'));
+});
+
+
 // Our JS task. It will Browserify our code and compile React JSX files.
 gulp.task('js', function() {
-  //return browserify([paths.js_src[0] + 'vendor/typed.min.js', paths.app_js])
   return browserify([paths.vendor, paths.demo, paths.app_js])
          .transform('babelify', {presets: ['es2015', 'react']})
          .bundle()
@@ -65,6 +81,11 @@ gulp.task('minify', function() {
     .pipe(minifyCss({compatibility: 'ie8'}))
     .pipe(rename('bundle.min.css'))
     .pipe(gulp.dest('build/'));
+
+  //html
+  gulp.src('build/index.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest(function(data){ return data.base; }));
 });
 
 // Rerun tasks whenever a file changes.
@@ -85,5 +106,7 @@ gulp.task('browsersync', function() {
   });
 });
 
-gulp.task('build', [ 'eslint', 'css', 'js', 'minify']);
-gulp.task('default', [ 'build', 'browsersync', 'watch']);
+gulp.task('build', function(callback) {
+  runSequence(['eslint', 'css', 'js', 'injectcss'], 'minify', callback);
+});
+gulp.task('default', ['build', 'browsersync', 'watch']);

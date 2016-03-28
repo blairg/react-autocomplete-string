@@ -15,17 +15,18 @@ var eslint     = require('gulp-eslint');
 var gulp       = require('gulp');
 var htmlmin    = require('gulp-htmlmin');
 var inject     = require('gulp-inject');
+var less       = require('gulp-less');
 var minifyCss  = require('gulp-minify-css');
+var path       = require('path');
 var reload     = browserSync.reload;
 var rename     = require('gulp-rename');
 var runSequence = require('run-sequence');
-var sass       = require('gulp-sass');
 var source     = require('vinyl-source-stream');
 var uglify     = require('gulp-uglify');
 
 // Define some paths.
 var paths = {
-  css:      ['./assets/scss/*.scss'],
+  less:     ['./assets/less/'],
   app_js:   ['./assets/js/src/components/app.jsx'],
   js_src:   ['./assets/js/src/'],
   js:       ['./assets/js/src/**/*.j*'],
@@ -38,11 +39,20 @@ gulp.task('eslint', function() {
     .pipe(eslint());
 });
 
-// Our CSS task. It finds all our Stylus files and compiles them.
-gulp.task('css', function() {
+// Our CSS task. It finds all our scss files and compiles them.
+/*gulp.task('css', function() {
   return gulp.src(paths.css)
     .pipe(concat('bundle.css'))
     .pipe(sass())
+    .pipe(gulp.dest('./build'));
+});*/
+
+gulp.task('less', function () {
+  return gulp.src(paths.less[0] + "*.less")
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(rename('bundle.css'))
     .pipe(gulp.dest('./build'));
 });
 
@@ -90,7 +100,7 @@ gulp.task('minify', function() {
 
 // Rerun tasks whenever a file changes.
 gulp.task('watch', function() {
-  gulp.watch(paths.css, ['css']);
+  gulp.watch(paths.less + "/demo.less", ['less']);
   gulp.watch(paths.js, ['js']);
 });
 
@@ -107,6 +117,6 @@ gulp.task('browsersync', function() {
 });
 
 gulp.task('build', function(callback) {
-  runSequence(['eslint', 'css', 'js', 'injectcss'], 'minify', callback);
+  runSequence(['eslint', 'less', 'js', 'injectcss'], 'minify', callback);
 });
 gulp.task('default', ['build', 'browsersync', 'watch']);

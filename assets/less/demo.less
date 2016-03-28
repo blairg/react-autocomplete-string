@@ -1,0 +1,147 @@
+//imports
+@import "bootstrap/index";
+
+// variables:
+@searchTextPlaceholderColor: #303a28;
+@backgroundColor: #343434;
+@screen-phone: 320px;
+@screen-bigphone: 420px;
+@screen-desktop: 1024px;
+
+body{
+  background: @backgroundColor;
+
+  a:link {
+    text-decoration: none;
+  }
+}
+
+.centerAlign{
+  margin-top: 5%;
+  margin-bottom: 3%;
+  text-align: center;
+
+  @media (min-width: @screen-desktop) {
+    margin-top: 5%;
+    margin-bottom: 0%;
+    text-align: inherit;
+  }
+}
+
+.smallBottomMargin{
+  margin-bottom: 2%;
+}
+
+.smallTopMargin{
+  margin-top: 2%;
+}
+
+#autocompleteContainer{
+
+    #resultsList{
+
+      @media (min-width: @screen-desktop) {
+        width: 39%;
+      }
+
+        background-color: #FFFFFF;
+
+        li {
+
+          text-align: center;
+          list-style-type: none;
+
+          @media (min-width: @screen-desktop) {
+            margin-left: -9.5%;
+          }
+
+          @media (max-width: @screen-phone) {
+            margin-left: -10%;
+          }
+
+          @media (max-width: @screen-bigphone) {
+            margin-left: -8%;
+          }
+
+          &:hover{
+            background-color: #c4baba;
+          }
+
+          em{
+            font-style: normal;
+            font-weight: bold;
+          }
+
+          a{
+            text-decoration: none;
+            color: @backgroundColor;
+          }
+        }
+    }
+}
+
+.TextBox-input{
+  color: #9DDD66;
+  background-color: #0E0F0D;
+  border-radius: 25px;
+  border: 2px solid @searchTextPlaceholderColor;
+  padding-left: 1%;
+  text-align: center;
+
+  @media (max-width: @screen-phone) {
+    font-size: 10pt;
+  }
+
+  @media (min-width: @screen-desktop) {
+    font-size: 30pt;
+  }
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:   @searchTextPlaceholderColor;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    @searchTextPlaceholderColor;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    @searchTextPlaceholderColor;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    @searchTextPlaceholderColor;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color:     @searchTextPlaceholderColor;
+}
+
+.typed-element{
+    color: #9DDD66;
+    cursor: hand;
+    font-family: Consolas, "Liberation Mono", Menlo, Monaco, Courier, monospace;
+    opacity: 1;
+
+    @media (max-width: @screen-phone) {
+      font-size: 9pt;
+    }
+
+    @media (min-width: @screen-desktop) {
+      font-size: 15pt;
+    }
+}
+/*
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}*/

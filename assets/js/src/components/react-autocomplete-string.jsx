@@ -96,10 +96,6 @@ export default class reactautocompletestring extends React.Component {
   handleSelectOption(e){
       e.preventDefault();
 
-      console.log('here');
-      console.log(e.target.innerText);
-      console.dir(e.target);
-
       var value = e.target.nodeName === "EM" ? e.target.attributes.data.value : e.target.innerText;
 
       if(value !== '')

@@ -1,81 +1,145 @@
-// __tests__/react-autocomplete-string-test.js
+//__tests__/react-autocomplete-string-test.js
+'use strict';
 //jest.autoMockOff();
 jest.dontMock('../react-autocomplete-string.jsx');
-jest.dontMock('../autocomplete-helper');
+jest.dontMock('../autocomplete-helper.js');
 
-//var React = require('react');
-//var ReactDOM = require('react-dom');
-//var TestUtils = require('react-addons-test-utils');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
+import AutoComplete from '../react-autocomplete-string.jsx';
 
-//var Autocomplete = require('../react-autocomplete-string.jsx');
+const values = ["Aberdeen", "Almondbury", "Bath", "Bradford", "Basingstoke", "Huddersfield",
+                "Halifax", "Hull", "Honley", "Harrogate", "Hadfield", "Holmfirth", "London",
+                "Leeds", "Manchester", "Nottingham", "Plymouth", "Wolverhampton"];
 
-describe('react-autocomplete-string', function() {
+describe('react-autocomplete-string - anywhere tests', () => {
 
-  var values = ['Aberdeen', 'Almondbury', 'Bath', 'Bradford', 'Huddersfield', 'Halifax', 'Hull',
-                'Honley', 'Harrogate', 'Hadfield', 'Holmfirth', 'London',
-                'Leeds', 'Manchester', 'Nottingham', 'Plymouth', 'Wolverhampton'];
-
-  var autocompleteControl;
-  var container = document.createElement("div");
+  const autocompleteNode = (<AutoComplete values={values} numresults={10} search={'anywhere'} casesensitive={false} minimumkeystrokes={2}
+                                          placeholder={'City name contains...'} />);
+  var renderedItem;
 
   beforeEach(function() {
-      // This component does not use any lifecycle methods or broadcast
-      // events so it does not require rendering to the DOM to be tested.
-      //autocompleteControl = TestUtils.renderIntoDocument(<Autocomplete values={values} numResults={5} search={'startsWith'} />);
-    });
-
-  afterEach(function() {
-    //if (autocompleteControl && autocompleteControl.isMounted()) {
-      // Only components with a parent will be unmounted
-      //React.unmountComponentAtNode(React.findDOMNode(autocompleteControl).parentNode);
-    //}
+    renderedItem = TestUtils.renderIntoDocument(autocompleteNode);
   });
 
+  it('should find Hull and Huddersfield', () => {
+    var txt = 'hu';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual(txt);
 
-  it('changes the text after click', function() {
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(2);
+    expect(ul.children[0].innerHTML.indexOf('<em data="Huddersfield">Hu</em>ddersfield') > -1).toEqual(true);
+    expect(ul.children[1].innerHTML.indexOf('<em data="Hull">Hu</em>ll') > -1).toEqual(true);
+  });
 
-    // Render a checkbox with label in the document
-    /*var autocompleteControl = TestUtils.renderIntoDocument(
-      <Autocomplete values={values} numResults={5} search={'startsWith'} />
-    );*/
+  it('should find Manchester', () => {
+    var txt = 'Manchester';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual(txt);
 
-    //var autocompleteNode = ReactDOM.findDOMNode(autocompleteControl);
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(1);
+    expect(ul.children[0].innerHTML.indexOf('<em data="Manchester">Manchester</em>') > -1).toEqual(true);
+  });
 
-    //console.dir(autocompleteNode);
-    //console.log(":" + autocompleteNode.textContent + ";");
+  it('should find Hadfield and Huddersfield', () => {
+    var txt = 'field';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual(txt);
 
-    //var div = TestUtils.findRenderedDOMComponentWithTag(autocompleteControl, 'div');
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(2);
+    expect(ul.children[0].innerHTML.indexOf('Had<em data="Hadfield">field</em>') > -1).toEqual(true);
+    expect(ul.children[1].innerHTML.indexOf('Hudders<em data="Huddersfield">field</em>') > -1).toEqual(true);
+  });
 
-    //console.log(div.getDOMNode().textContent);
+  it('should find no results as the value is empty', () => {
+    var txt = '';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual(txt);
 
-    //var shallowRenderer = TestUtils.createRenderer();
-    //shallowRenderer.render(<Autocomplete values={values} numResults={5} search={'startsWith'} />);
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(0);
+  });
 
-    //var result = shallowRenderer.getRenderOutput();
+  it('should find no results as the value is invalid', () => {
+    var txt = 'Invalid TOWN';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual('');
 
-    //console.dir(result);
-    //console.log(result);
-    //console.log(result.props.children.length);
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(0);
+  });
 
-    //for(var i = 0; i < result.props.children.length; i++)
-    //{
-      //  console.log(result.props.children[i]);
-    //}
+});
 
-    /*var autocompleteTextbox = TestUtils.findRenderedDOMComponentWithClass(autocompleteControl, 'TextBox-input');
+describe('react-autocomplete-string - startswith tests', () => {
 
-    TestUtils.Simulate.keyUp(autocompleteTextbox, {key: "H", keyCode: 72, which: 72});
-    TestUtils.Simulate.keyUp(autocompleteTextbox, {key: "u", keyCode: 85, which: 85});
-    TestUtils.Simulate.keyUp(autocompleteTextbox, {key: "d", keyCode: 68, which: 68});*/
+  const autocompleteNode = (<AutoComplete values={values} numresults={10} search={'startswith'} casesensitive={false} minimumkeystrokes={1}
+                                          placeholder={'City name starts with...'} />);
+  var renderedItem;
 
-    //var autocompleteUl = TestUtils.findRenderedDOMComponentWithTag(autocompleteNode, 'ul');
-    //console.log(TestUtils.findRenderedDOMComponentWithClass(autocompleteControl, 'TextBox-input'));
+  beforeEach(function() {
+    renderedItem = TestUtils.renderIntoDocument(autocompleteNode);
+  });
 
-  //  console.dir(autocompleteUl);
-  //  console.log(":" + autocompleteUl.textContent + ";");
+  it('should find Aberdeen and Almondbury', () => {
+    var txt = 'A';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual(txt);
 
-    // Verify that it's Off by default
-    //expect(autocompleteNode.textContent).toContain("Huddersfield");
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(2);
+    expect(ul.children[0].innerHTML.indexOf('<em data="Aberdeen">A</em>berdeen') > -1).toEqual(true);
+    expect(ul.children[1].innerHTML.indexOf('<em data="Almondbury">A</em>lmondbury') > -1).toEqual(true);
+  });
+
+  it('should find Manchester', () => {
+    var txt = 'Manchester';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual(txt);
+
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(1);
+    expect(ul.children[0].innerHTML.indexOf('<em data="Manchester">Manchester</em>') > -1).toEqual(true);
+  });
+
+  it('should find no results as the value is empty', () => {
+    var txt = '';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual(txt);
+
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(0);
+  });
+
+  it('should find no results as the value is invalid', () => {
+    var txt = 'Invalid TOWN';
+    var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
+    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
+    TestUtils.Simulate.change(input,  {target: {value: txt}});
+    expect(input.value).toEqual('');
+
+    var ul = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'ul');
+    expect(ul.children.length).toEqual(0);
   });
 
 });

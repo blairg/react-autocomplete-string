@@ -1,5 +1,5 @@
 // __tests__/autocomplete-helper-test.js
-jest.autoMockOff();
+/*jest.autoMockOff();
 jest.dontMock('../autocomplete-helper');
 
 var autocompleteHelper = require('../autocomplete-helper');
@@ -270,3 +270,4 @@ describe('numberOfKeyStrokesReached tests', function() {
   });
 
 });
+*/

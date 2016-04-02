@@ -39,14 +39,6 @@ gulp.task('eslint', function() {
     .pipe(eslint());
 });
 
-// Our CSS task. It finds all our scss files and compiles them.
-/*gulp.task('css', function() {
-  return gulp.src(paths.css)
-    .pipe(concat('bundle.css'))
-    .pipe(sass())
-    .pipe(gulp.dest('./build'));
-});*/
-
 gulp.task('less', function () {
   return gulp.src(paths.less[0] + "*.less")
     .pipe(less({

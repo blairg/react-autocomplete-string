@@ -36,13 +36,13 @@ autocompleteHelper.findMatchesInArray = function(valueToFind, caseSensitive, lis
 
         if(found > -1)
         {
-          if(foundValues.length < numResultsToReturn)
-          {
-              foundValues.push(listOfValues[i]);
-              continue;
-          }
+            if(foundValues.length < numResultsToReturn)
+            {
+                foundValues.push(listOfValues[i]);
+                continue;
+            }
 
-          break;
+            break;
         }
     }
 
@@ -79,7 +79,7 @@ autocompleteHelper.findMatchesStartsWithInArray = function(valueToFind, caseSens
       {
           if(foundStartingLetter === true)
           {
-            break;
+              break;
           }
       }
   }
@@ -99,10 +99,63 @@ autocompleteHelper.numberOfKeyStrokesReached = function(keyedValue, minimumNumbe
 
     if(keyedValue === undefined || minimumNumberOfStrokesReached === undefined || isNaN(minimumNumberOfStrokesReached))
     {
-      return false;
+        return false;
     }
 
     return keyedValue.length >= minimumNumberOfStrokesReached;
+};
+
+autocompleteHelper.isListOrObject = function(value)
+{
+    if(value.constructor.name === 'Object')
+    {
+        if(this.areAllKeysStrings(value))
+        {
+            return "object";
+        }
+    }
+
+    if(value.constructor.name === 'Array')
+    {
+        if(this.areAllValuesStrings(value))
+        {
+            return "list";
+        }
+    }
+
+    return "invalid";
+};
+
+autocompleteHelper.areAllValuesStrings = function(values)
+{
+    for(var i = 0; i < values.length; i++)
+    {
+        if (typeof values[i] !== 'string' && !(values[i] instanceof String))
+        {
+            return false;
+        }
+    }
+
+    return true;
+};
+
+autocompleteHelper.areAllKeysStrings = function(values)
+{
+    var nonStrings = false;
+
+    Object.keys(values).forEach(function(key) {
+        var key = key.toString().toLowerCase();
+
+        if(!isNaN(key)){
+            nonStrings = true;
+        }
+
+        if (key === "true" || key === "false"){
+            nonStrings = true;
+        }
+    });
+
+    return nonStrings ? false : true;
 };
 
 module.exports = autocompleteHelper;

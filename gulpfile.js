@@ -6,26 +6,30 @@
 'use strict';
 
 // Load some modules which are installed through NPM.
-var browserSync  = require('browser-sync');
-var babel      = require('gulp-babel');
-var babelify   = require('babelify');
-var browserify = require('browserify');  // Bundles JS.
-var concat     = require('gulp-concat');
-var eslint     = require('gulp-eslint');
-var gulp       = require('gulp');
-var htmlmin    = require('gulp-htmlmin');
-var inject     = require('gulp-inject');
-var less       = require('gulp-less');
-var minifyCss  = require('gulp-minify-css');
-var path       = require('path');
-var reload     = browserSync.reload;
-var rename     = require('gulp-rename');
-var runSequence = require('run-sequence');
-var source     = require('vinyl-source-stream');
-var uglify     = require('gulp-uglify');
+const browserSync  = require('browser-sync');
+const babel      = require('gulp-babel');
+const babelify   = require('babelify');
+const browserify = require('browserify');  // Bundles JS.
+const concat     = require('gulp-concat');
+const eslint     = require('gulp-eslint');
+const gulp       = require('gulp');
+const htmlmin    = require('gulp-htmlmin');
+const imagemin         = require('imagemin');
+const imageminMozjpeg  = require('imagemin-mozjpeg');
+const imageminPngquant = require('imagemin-pngquant');
+const inject     = require('gulp-inject');
+const less       = require('gulp-less');
+const minifyCss  = require('gulp-minify-css');
+const path       = require('path');
+const reload     = browserSync.reload;
+const rename     = require('gulp-rename');
+const rmdir      = require('rmdir');
+const runSequence = require('run-sequence');
+const source     = require('vinyl-source-stream');
+const uglify     = require('gulp-uglify');
 
 // Define some paths.
-var paths = {
+const paths = {
   less:     ['./assets/less/'],
   app_js:   ['./assets/js/src/components/app.jsx'],
   js_src:   ['./assets/js/src/'],
@@ -90,6 +94,29 @@ gulp.task('minify', function() {
     .pipe(gulp.dest(function(data){ return data.base; }));
 });
 
+gulp.task('images', function() {
+  imagemin(['assets/images/*.{jpg,png}'], 'build/', {
+  	use: [
+  		imageminMozjpeg({targa: true}),
+  		imageminPngquant({quality: '65-80'})
+  	]
+  }).then(files => {
+  	//console.log(files);
+  	//=> [{data: <Buffer 89 50 4e …>, path: 'build/foo.jpg'}, …]
+  });
+
+  gulp.src('build/assets/images/*', {base: './build/assets/images'})
+      .pipe(gulp.dest('build'));
+});
+
+gulp.task('clean-build', function() {
+  rmdir('./build/assets', function (err, dirs, files) {
+      console.log(dirs);
+      console.log(files);
+      console.log('all files are removed');
+   });
+});
+
 // Rerun tasks whenever a file changes.
 gulp.task('watch', function() {
   gulp.watch(paths.less + "/demo.less", ['less']);
@@ -109,6 +136,6 @@ gulp.task('browsersync', function() {
 });
 
 gulp.task('build', function(callback) {
-  runSequence(['eslint', 'less', 'js', 'injectcss'], 'minify', callback);
+  runSequence(['eslint', 'less', 'js', 'injectcss', 'images'], 'clean-build', 'minify', callback);
 });
 gulp.task('default', ['build', 'browsersync', 'watch']);

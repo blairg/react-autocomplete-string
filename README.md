@@ -13,12 +13,10 @@ The current build has been tested with Node.js 5.7.0.
 ```
 .
 ├── /assets/                    # The source code of the application
-│   ├── /config/                # Contains React-Tools preprocessor file.
 │   ├── /css/                   # Transpilied SASS files.
 │   ├── /js/                    # Javascript files which are the autocomplete component.
 │   ├── /scss/                  # SASS files which need transpiling to CSS.
 ├── /build/                     # The folder for compiled output
-├── /config/                    # Configuration files.
 ├── /node_modules/              # 3rd-party libraries and utilities
 │── gulpfile.js                 # Configuration file for automated builds
 │── index.html                  # Page to demo the autocomplete component

@@ -1,5 +1,5 @@
 // __tests__/autocomplete-helper-test.js
-/*jest.autoMockOff();
+jest.autoMockOff();
 jest.dontMock('../autocomplete-helper');
 
 var autocompleteHelper = require('../autocomplete-helper');
@@ -270,4 +270,116 @@ describe('numberOfKeyStrokesReached tests', function() {
   });
 
 });
-*/
+
+describe('flat list or json object test', function() {
+
+  it('should return "list"', function() {
+
+      var list = ['Leeds', 'Manchester'];
+      var type = autocompleteHelper.isListOrObject(list);
+
+      expect(type).toBe('list');
+
+  });
+
+  it('should return "object"', function() {
+
+      var list = {'Leeds':'http://localhost:3000/town/Leeds', 'Manchester':'http://localhost:3000/town/Manchester',
+                  'Bradford':'http://localhost:3000/town/Bradford'};
+      var type = autocompleteHelper.isListOrObject(list);
+
+      expect(type).toBe('object');
+
+  });
+
+  it('should return "invalid" for anything else', function() {
+
+      var invalidType = 'invalid';
+      var value = 7;
+      var type = autocompleteHelper.isListOrObject(value);
+      expect(type).toBe(invalidType);
+
+      value = 1.5;
+      type = autocompleteHelper.isListOrObject(value);
+      expect(type).toBe(invalidType);
+
+      value = "Wakefield";
+      type = autocompleteHelper.isListOrObject(value);
+      expect(type).toBe(invalidType);
+
+      value = false;
+      type = autocompleteHelper.isListOrObject(value);
+      expect(type).toBe(invalidType);
+
+      value = new Date();
+      type = autocompleteHelper.isListOrObject(value);
+      expect(type).toBe(invalidType);
+
+  });
+
+});
+
+describe('check array list tests', function() {
+
+  it('should return true as all values are strings', function() {
+
+      var list = ['Leeds', 'Manchester'];
+      var allStrings = autocompleteHelper.areAllValuesStrings(list);
+
+      expect(allStrings).toBe(true);
+
+  });
+
+  it('should return false as list contains a number', function() {
+
+      var list = ['Leeds', 2];
+      var allStrings = autocompleteHelper.areAllValuesStrings(list);
+
+      expect(allStrings).toBe(false);
+
+  });
+
+  it('should return false as list contains a boolean', function() {
+
+      var list = ['Leeds', 'Manchester', true, 'Huddersfield'];
+      var allStrings = autocompleteHelper.areAllValuesStrings(list);
+
+      expect(allStrings).toBe(false);
+
+  });
+
+});
+
+describe('check object tests', function() {
+
+  it('should return true as all keys are strings', function() {
+
+      var list = {'Leeds':'http://localhost:3000/town/Leeds', 'Manchester':'http://localhost:3000/town/Manchester',
+                  'Bradford':'http://localhost:3000/town/Bradford'};
+      var allStrings = autocompleteHelper.areAllKeysStrings(list);
+
+      expect(allStrings).toBe(true);
+
+  });
+
+  it('should return false as list contains a number key', function() {
+
+      var list = {'Leeds':'http://localhost:3000/town/Leeds', 'Manchester':'http://localhost:3000/town/Manchester',
+                  0:'http://localhost:3000/town/Bradford'};
+      var allStrings = autocompleteHelper.areAllKeysStrings(list);
+
+      expect(allStrings).toBe(false);
+
+  });
+
+  it('should return false as list contains a boolean key', function() {
+
+      var list = {'Leeds':'http://localhost:3000/town/Leeds', true:'http://localhost:3000/town/Manchester',
+                  'Bradford':'http://localhost:3000/town/Bradford'};
+      var allStrings = autocompleteHelper.areAllKeysStrings(list);
+
+      expect(allStrings).toBe(false);
+
+  });
+
+});

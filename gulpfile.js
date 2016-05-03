@@ -49,13 +49,13 @@ gulp.task('less', function () {
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
     .pipe(rename('bundle.css'))
-    .pipe(gulp.dest('./build'));
+    .pipe(gulp.dest('./build/css/'));
 });
 
 //inject inline css into the index.html
 gulp.task('injectcss', function() {
   gulp.src('./index.html')
-    .pipe(inject(gulp.src(['./build/bundle.min.css']), {
+    .pipe(inject(gulp.src(['./build/css/bundle.min.css']), {
       starttag: '<!-- inject:head:css -->',
       transform: function (filePath, file) {
         // return file contents as string
@@ -72,7 +72,7 @@ gulp.task('js', function() {
          .transform('babelify', {presets: ['es2015', 'react']})
          .bundle()
          .pipe(source('bundle.js'))
-         .pipe(gulp.dest('./build'));
+         .pipe(gulp.dest('./build/js/'));
 });
 
 gulp.task('minify', function() {
@@ -80,13 +80,13 @@ gulp.task('minify', function() {
   gulp.src('build/bundle.js')
     .pipe(uglify())
     .pipe(rename('bundle.min.js'))
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('build/js/'));
 
   //css
   gulp.src('build/bundle.css')
     .pipe(minifyCss({compatibility: 'ie8'}))
     .pipe(rename('bundle.min.css'))
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('build/css/'));
 
   //html
   gulp.src('build/index.html')
@@ -95,7 +95,7 @@ gulp.task('minify', function() {
 });
 
 gulp.task('images', function() {
-  imagemin(['assets/images/*.{jpg,png}'], 'build/', {
+  imagemin(['assets/images/*.{jpg,png}'], 'build/img/', {
   	use: [
   		imageminMozjpeg({targa: true}),
   		imageminPngquant({quality: '65-80'})
@@ -105,12 +105,12 @@ gulp.task('images', function() {
   	//=> [{data: <Buffer 89 50 4e …>, path: 'build/foo.jpg'}, …]
   });
 
-  gulp.src('build/assets/images/*', {base: './build/assets/images'})
-      .pipe(gulp.dest('build'));
+  gulp.src('build/img/assets/images/*', {base: './build/img/assets/images'})
+      .pipe(gulp.dest('build/img/'));
 });
 
 gulp.task('clean-build', function() {
-  rmdir('./build/assets', function (err, dirs, files) {
+  rmdir('./build/img/assets', function (err, dirs, files) {
       console.log(dirs);
       console.log(files);
       console.log('all files are removed');

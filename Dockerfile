@@ -1,9 +1,10 @@
-FROM ubuntu:latest
+FROM node:latest
 MAINTAINER Blair Garrett <blair.garrett1@gmail.com>
-RUN apt-get update && apt-get -y install curl nginx nano
+EXPOSE 80
+
+RUN apt-get update
+RUN apt-get -y install nginx nano git
 RUN apt-get -y install supervisor
-RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-RUN apt-get install -y git nodejs
 WORKDIR /opt
 RUN git clone https://github.com/blairg/react-autocomplete-string.git
 WORKDIR /opt/react-autocomplete-string

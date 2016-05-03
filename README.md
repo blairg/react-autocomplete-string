@@ -14,6 +14,7 @@ The current build has been tested with Node.js 5.7.0.
 .
 ├── /assets/                    # The source code of the application
 │   ├── /css/                   # Transpilied SASS files.
+│   ├── /images/                # Images used by the demo site.
 │   ├── /js/                    # Javascript files which are the autocomplete component.
 │   ├── /scss/                  # SASS files which need transpiling to CSS.
 ├── /build/                     # The folder for compiled output

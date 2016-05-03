@@ -77,13 +77,13 @@ gulp.task('js', function() {
 
 gulp.task('minify', function() {
   //js
-  gulp.src('build/bundle.js')
+  gulp.src('build/js/bundle.js')
     .pipe(uglify())
     .pipe(rename('bundle.min.js'))
     .pipe(gulp.dest('build/js/'));
 
   //css
-  gulp.src('build/bundle.css')
+  gulp.src('build/css/bundle.css')
     .pipe(minifyCss({compatibility: 'ie8'}))
     .pipe(rename('bundle.min.css'))
     .pipe(gulp.dest('build/css/'));
@@ -105,12 +105,12 @@ gulp.task('images', function() {
   	//=> [{data: <Buffer 89 50 4e …>, path: 'build/foo.jpg'}, …]
   });
 
-  gulp.src('build/img/assets/images/*', {base: './build/img/assets/images'})
+  gulp.src('build/img/assets/images/*', {base: './build/img/assets/images/'})
       .pipe(gulp.dest('build/img/'));
 });
 
 gulp.task('clean-build', function() {
-  rmdir('./build/img/assets', function (err, dirs, files) {
+  rmdir('./build/img/assets/', function (err, dirs, files) {
       console.log(dirs);
       console.log(files);
       console.log('all files are removed');

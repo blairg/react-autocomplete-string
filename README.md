@@ -33,6 +33,7 @@ $ git clone -o upstream https://github.com/blairg/react-autocomplete-string.git 
 $ cd MyApp
 $ npm install gulp -g                          # Install Gulp task runner globally
 $ npm install bower -gnpm                      # Install Bower globally
+$ npm install babel-preset-es2015              # Install babel ES6 transpiler golbally.
 $ npm install                                  # Install Node.js components listed in ./package.json
 ```
 

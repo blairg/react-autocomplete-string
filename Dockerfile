@@ -1,7 +1,5 @@
 FROM node:latest
 MAINTAINER Blair Garrett <blair.garrett1@gmail.com>
-EXPOSE 80
-
 RUN apt-get update
 RUN apt-get -y install nginx nano git
 RUN apt-get -y install supervisor
@@ -14,5 +12,9 @@ RUN npm install
 RUN gulp build
 RUN rm -f /etc/nginx/sites-enabled/default
 COPY nginxconf /etc/nginx/sites-enabled/nginxconf
+EXPOSE 80
 COPY nginx.conf /etc/supervisor/conf.d/nginx.conf
-CMD ["/usr/bin/supervisord"]
+#CMD ["/usr/bin/supervisord"]
+#ENTRYPOINT ["/usr/sbin/nginx"]
+#/usr/sbin/nginx
+#cp assets/images/* build/img/

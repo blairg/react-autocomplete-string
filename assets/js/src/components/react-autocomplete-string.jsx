@@ -120,7 +120,7 @@ export default class AutoComplete extends React.Component {
           selectedValue = keyedValue;
       }
 
-      return (
+      return
         <div id="autocompleteContainer" className="autocomplete">
           <input type="search" className="TextBox-input" ref="inputAutocomplete" key="inputAutocomplete"
                  onChange={this.handleChange} value={selectedValue} placeholder={placeHolder} />
@@ -142,6 +142,6 @@ export default class AutoComplete extends React.Component {
                    </ul>
                  </div>
          </div>
-      );
+      ;
   }
 }

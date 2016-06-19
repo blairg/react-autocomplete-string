@@ -2,16 +2,10 @@
 # https://help.github.com/articles/ignoring-files
 
 .idea
-assets/.DS_Store
-build
-bower_components
 .DS_Store
 <<<<<<< HEAD
 coverage
 node_modules
 npm-debug.log
 .vscode
-=======
-node_modules
-npm-debug.log
->>>>>>> 8391d7108ae47c1c5c55e5952ef78ebcaaf05d85
+distribution

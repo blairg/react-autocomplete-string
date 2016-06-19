@@ -6,11 +6,11 @@
 'use strict';
 
 // Load some modules which are installed through NPM.
-const eslint     = require('gulp-eslint');
+const eslint = require('gulp-eslint');
 
 // Define some paths.
 const paths = {
-  js: ['./assets/js/src/**/*.j*']
+  js: ['./source/**/*.j*']
 };
 
 gulp.task('eslint', function() {

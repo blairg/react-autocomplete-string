@@ -4,11 +4,11 @@
  */
 
 'use strict';
-
+ 
 import React from 'react';
 import AutoCompleteHelper from './autocomplete-helper';
 
-export default class AutoComplete extends React.Component {
+ module.exports = class AutoComplete extends React.Component {
 
   constructor(props) {
       super(props);
@@ -120,7 +120,7 @@ export default class AutoComplete extends React.Component {
           selectedValue = keyedValue;
       }
 
-      return
+      return (
         <div id="autocompleteContainer" className="autocomplete">
           <input type="search" className="TextBox-input" ref="inputAutocomplete" key="inputAutocomplete"
                  onChange={this.handleChange} value={selectedValue} placeholder={placeHolder} />
@@ -141,7 +141,6 @@ export default class AutoComplete extends React.Component {
                      }.bind(this))}
                    </ul>
                  </div>
-         </div>
-      ;
+         </div>);
   }
 }

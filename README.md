@@ -4,6 +4,8 @@
 
 [Demo Site](http://139.59.167.176/)
 
+[Circle CI Builds](https://circleci.com/gh/blairg/react-autocomplete-string)
+
 The current build has been tested with Node.js 5.7.0.
 
 > This project template is an autocomplete component for React.
@@ -12,14 +14,7 @@ The current build has been tested with Node.js 5.7.0.
 
 ```
 .
-├── /assets/                    # The source code of the application
-│   ├── /css/                   # Transpilied SASS files.
-│   ├── /images/                # Images used by the demo site.
-│   ├── /js/                    # Javascript files which are the autocomplete component.
-│   ├── /scss/                  # SASS files which need transpiling to CSS.
-├── /build/                     # The folder for compiled output
-├── /node_modules/              # 3rd-party libraries and utilities
-│── index.html                  # Page to demo the autocomplete component
+├── /source/                    # Contains 
 └── package.json                # The list of 3rd party libraries and utilities
 ```
 
@@ -32,6 +27,7 @@ $ git clone -o upstream https://github.com/blairg/react-autocomplete-string.git 
 $ cd MyApp
 $ npm install gulp -g                          # Install Gulp task runner globally
 $ npm install bower -gnpm                      # Install Bower globally
+$ npm install jshint -g                        # Requires jshint to be installed globally.
 $ npm install babel-preset-es2015              # Install babel ES6 transpiler golbally.
 $ npm install                                  # Install Node.js components listed in ./package.json
 ```
@@ -39,17 +35,17 @@ $ npm install                                  # Install Node.js components list
 ### How to Build
 
 ```shell
-$ gulp build
+$ npm build
 ```
 
-### How to Run
+### How to Test
+
+Run unit tests powered by [Jest](https://facebook.github.io/jest/) with the following
+[npm](https://www.npmjs.org/doc/misc/npm-scripts.html) command:
 
 ```shell
-$ gulp
+$ npm test
 ```
-
-This will start a lightweight development server with LiveReload and
-synchronized browsing across multiple devices and browsers.
 
 ### How to Update
 
@@ -63,14 +59,7 @@ $ git merge upstream/master
 $ npm install
 ```
 
-### How to Test
 
-Run unit tests powered by [Jest](https://facebook.github.io/jest/) with the following
-[npm](https://www.npmjs.org/doc/misc/npm-scripts.html) command:
-
-```shell
-$ npm test
-```
 
 ### How to use the autocomplete component
 

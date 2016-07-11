@@ -9,5 +9,5 @@ dependencies:
     - npm install -g npm;
     - npm -v;
     - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p;
-    - npm install jshint jest gulp babel-preset-es2015 -g;
+    - npm install babel-jest jshint jest gulp babel-preset-es2015 -g;
     - npm install bower -gnpm;

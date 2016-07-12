@@ -34,6 +34,9 @@
     "jest-cli": "^12.1.1",
     "react": "^15.1.0"
   },
+  "babel": {
+    "presets": [ "react" ]
+  },
   "jest": {
     "scriptPreprocessor": "./node_modules/babel-jest",
     "rootDir": "__tests__",

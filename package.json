@@ -2,7 +2,7 @@
   "author": "Blair Garrett <blair.garrett1@gmail.com>",
   "name": "react-autocomplete-string",
   "private": false,
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "React Autocomplete Component for String Arrays",
   "repository": {
     "type": "git",
@@ -35,7 +35,6 @@
     "react": "^15.1.0"
   },
   "jest": {
-    "scriptPreprocessor": "<rootdir>/node_modules/babel-jest",
     "rootDir": "__tests__",
     "unmockedModulePathPatterns": [
       "react",

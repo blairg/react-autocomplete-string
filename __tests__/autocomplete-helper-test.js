@@ -96,6 +96,18 @@ describe('findMatchesInArray tests', function() {
       expect(foundValues.indexOf('Holmfirth') > -1).toBe(true);
    });
 
+
+    it('should find only Leeds and return 1 result - case sensitive', function() {
+        var caseSensitive = true;
+        var numResultsToReturn = 1;
+        var valueToFind = "Le";
+        var values = ['Leeds', 'Leicester'];
+        var foundValues = autocompleteHelper.findMatchesInArray(valueToFind, caseSensitive, values, numResultsToReturn);
+
+        expect(foundValues.length).toBe(1);
+        expect(foundValues.indexOf('Leeds') > -1).toBe(true);
+    });
+
 });
 
 describe('findMatchesStartsWithInArray tests', function() {
@@ -124,6 +136,16 @@ describe('findMatchesStartsWithInArray tests', function() {
       expect(foundValues.indexOf("Aberdeen") > -1).toBe(true);
       expect(foundValues.indexOf("Almondbury") > -1).toBe(true);
    });
+
+    it('should find only Aberdeen - case sensitive', function() {
+        var caseSensitive = true;
+        var numResultsToReturn = 1;
+        var valueToFind = "A";
+        var foundValues = autocompleteHelper.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+
+        expect(foundValues.length).toBe(1);
+        expect(foundValues.indexOf("Aberdeen") > -1).toBe(true);
+    });
 
    it('should find only Almondbury - case insensitive', function() {
      var caseSensitive = false;

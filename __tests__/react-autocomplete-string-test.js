@@ -1,20 +1,20 @@
 //__tests__/react-autocomplete-string-test.js
 'use strict';
-//jest.autoMockOff();
 jest.dontMock('../source/react-autocomplete-string.jsx');
 jest.dontMock('../source/autocomplete-helper.js');
 
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import AutoComplete from '../source/react-autocomplete-string.jsx';
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
+var AutoComplete = require('../source/react-autocomplete-string.jsx');
 
-const values = ["Aberdeen", "Almondbury", "Bath", "Bradford", "Basingstoke", "Huddersfield",
+
+var values = ["Aberdeen", "Almondbury", "Bath", "Bradford", "Basingstoke", "Huddersfield",
                 "Halifax", "Hull", "Honley", "Harrogate", "Hadfield", "Holmfirth", "London",
                 "Leeds", "Manchester", "Nottingham", "Plymouth", "Wolverhampton"];
 
-describe('react-autocomplete-string - anywhere tests', () => {
+describe('react-autocomplete-string - anywhere tests', function() {
 
-  const autocompleteNode =( <AutoComplete values={values} numresults={10} search={'anywhere'} casesensitive={false} minimumkeystrokes={2}
+  var autocompleteNode =( <AutoComplete values={values} numresults={10} search={'anywhere'} casesensitive={false} minimumkeystrokes={2}
                                           placeholder={'City name contains...'} />);
   var renderedItem;
 
@@ -22,10 +22,9 @@ describe('react-autocomplete-string - anywhere tests', () => {
     renderedItem = TestUtils.renderIntoDocument(autocompleteNode);
   });
 
-  it('should find Hull and Huddersfield', () => {
+  it('should find Hull and Huddersfield', function() {
     var txt = 'hu';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual(txt);
 
@@ -35,10 +34,9 @@ describe('react-autocomplete-string - anywhere tests', () => {
     expect(ul.children[1].innerHTML.indexOf('<em data="Hull">Hu</em>ll') > -1).toEqual(true);
   });
 
-  it('should find Manchester', () => {
+  it('should find Manchester', function() {
     var txt = 'Manchester';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual(txt);
 
@@ -47,10 +45,9 @@ describe('react-autocomplete-string - anywhere tests', () => {
     expect(ul.children[0].innerHTML.indexOf('<em data="Manchester">Manchester</em>') > -1).toEqual(true);
   });
 
-  it('should find Hadfield and Huddersfield', () => {
+  it('should find Hadfield and Huddersfield', function() {
     var txt = 'field';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual(txt);
 
@@ -60,10 +57,9 @@ describe('react-autocomplete-string - anywhere tests', () => {
     expect(ul.children[1].innerHTML.indexOf('Hudders<em data="Huddersfield">field</em>') > -1).toEqual(true);
   });
 
-  it('should find no results as the value is empty', () => {
+  it('should find no results as the value is empty', function() {
     var txt = '';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual(txt);
 
@@ -71,10 +67,9 @@ describe('react-autocomplete-string - anywhere tests', () => {
     expect(ul.children.length).toEqual(0);
   });
 
-  it('should find no results as the value is invalid', () => {
+  it('should find no results as the value is invalid', function() {
     var txt = 'Invalid TOWN';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual('');
 
@@ -84,7 +79,7 @@ describe('react-autocomplete-string - anywhere tests', () => {
 
 });
 
-describe('react-autocomplete-string - startswith tests', () => {
+describe('react-autocomplete-string - startswith tests', function() {
 
   const autocompleteNode = (<AutoComplete values={values} numresults={10} search={'startswith'} casesensitive={false} minimumkeystrokes={1}
                                           placeholder={'City name starts with...'} />);
@@ -94,10 +89,9 @@ describe('react-autocomplete-string - startswith tests', () => {
     renderedItem = TestUtils.renderIntoDocument(autocompleteNode);
   });
 
-  it('should find Aberdeen and Almondbury', () => {
+  it('should find Aberdeen and Almondbury', function() {
     var txt = 'A';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual(txt);
 
@@ -107,10 +101,9 @@ describe('react-autocomplete-string - startswith tests', () => {
     expect(ul.children[1].innerHTML.indexOf('<em data="Almondbury">A</em>lmondbury') > -1).toEqual(true);
   });
 
-  it('should find Manchester', () => {
+  it('should find Manchester', function() {
     var txt = 'Manchester';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual(txt);
 
@@ -119,10 +112,9 @@ describe('react-autocomplete-string - startswith tests', () => {
     expect(ul.children[0].innerHTML.indexOf('<em data="Manchester">Manchester</em>') > -1).toEqual(true);
   });
 
-  it('should find no results as the value is empty', () => {
+  it('should find no results as the value is empty', function() {
     var txt = '';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual(txt);
 
@@ -130,10 +122,9 @@ describe('react-autocomplete-string - startswith tests', () => {
     expect(ul.children.length).toEqual(0);
   });
 
-  it('should find no results as the value is invalid', () => {
+  it('should find no results as the value is invalid', function() {
     var txt = 'Invalid TOWN';
     var input = TestUtils.findRenderedDOMComponentWithTag(renderedItem, 'input');
-    //TestUtils.Simulate.keyDown(input, {key: 'a'});  // this doesn't work
     TestUtils.Simulate.change(input,  {target: {value: txt}});
     expect(input.value).toEqual('');
 

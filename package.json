@@ -38,7 +38,7 @@
     "presets": [ "react" ]
   },
   "jest": {
-    "scriptPreprocessor": "node_modules/babel-jest",
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "rootDir": "__tests__",
     "unmockedModulePathPatterns": [
       "react",

@@ -35,6 +35,7 @@
     "react": "^15.1.0"
   },
   "jest": {
+    "scriptPreprocessor": "./node_modules/babel-jest",
     "rootDir": "__tests__",
     "unmockedModulePathPatterns": [
       "react",

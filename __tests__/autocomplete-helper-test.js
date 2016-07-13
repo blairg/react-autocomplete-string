@@ -1,6 +1,6 @@
 // __tests__/autocomplete-helper-test.js
-jest.autoMockOff();
-jest.dontMock('../source/autocomplete-helper');
+//jest.autoMockOff();
+//jest.dontMock('../source/autocomplete-helper');
 
 var autocompleteHelper = require('../source/autocomplete-helper');
 

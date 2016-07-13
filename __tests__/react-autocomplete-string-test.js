@@ -1,7 +1,7 @@
 //__tests__/react-autocomplete-string-test.js
 'use strict';
-jest.dontMock('../source/react-autocomplete-string.jsx');
-jest.dontMock('../source/autocomplete-helper.js');
+//jest.dontMock('../source/react-autocomplete-string.jsx');
+//jest.dontMock('../source/autocomplete-helper.js');
 
 var React = require('react');
 var TestUtils = require('react-addons-test-utils');

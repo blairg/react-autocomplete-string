@@ -1,13 +1,12 @@
+general:
+  branches:
+    only:
+      - master
+machine:
+  node:
+    version: 5.0.0
 dependencies:
   pre:
-    - nvm list;
-    - nvm ls-remote;
-    - nvm install 5.7.0;
-    - nvm use 5.7.0;
-    - nvm alias default 5.7.0;
-    - node -v;
-    - npm install -g npm;
-    - npm -v;
     - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p;
     - npm install react-addons-test-utils babel-cli babel-core babel-loader babel-preset-react babel-preset-es2015 babel-preset-stage-0 jshint gulp istanbul karma-phantomjs-launcher -g;
     - npm install -g karma-cli;
@@ -16,4 +15,6 @@ dependencies:
     - karma start karma.conf.js;
     - echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login;
 deployment:
-    - npm publish;
+  production:
+    commands:
+      - npm publish;

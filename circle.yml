@@ -12,3 +12,12 @@ dependencies:
     - npm install react-addons-test-utils babel-cli babel-core babel-loader babel-preset-react babel-preset-es2015 babel-preset-stage-0 jshint gulp istanbul karma-phantomjs-launcher -g;
     - npm install -g karma-cli;
     - npm install bower -gnpm;
+    - npm test;
+    - karma start karma.conf.js;
+  deployment:
+    npm:
+      branch: master
+      commands:
+        # login using environment variables
+        - echo -e "$NPM_USERNAME\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login;
+        - npm publish;

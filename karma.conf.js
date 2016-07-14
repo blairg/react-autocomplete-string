@@ -10,12 +10,13 @@ module.exports = function(config) {
     ],
     browsers: ['PhantomJS'],
     files: [
-      { pattern: 'tests.webpack.js', watched: false },
+      { pattern: 'tests.webpack.js', watched: false }
     ],
     frameworks: ['jasmine'],
     preprocessors: {
       'tests.webpack.js': ['webpack'],
-      'source/*.js*': ['coverage']
+      'source/*.js': ['coverage'],
+      'source/*.jsx': ['coverage']
     },
     reporters: ['dots', 'progress', 'coverage', 'junit'],
     coverageReporter: {
@@ -46,7 +47,7 @@ module.exports = function(config) {
         ],
         loaders: [
           { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
-        ],
+        ]
       },
       watch: true
     },

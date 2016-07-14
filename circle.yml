@@ -4,7 +4,7 @@ general:
       - master
 machine:
   node:
-    version: 5.0.0
+    version: 5.7.0
 dependencies:
   pre:
     - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p;

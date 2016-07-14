@@ -15,9 +15,6 @@ dependencies:
     - npm test;
     - karma start karma.conf.js;
 deployment:
-  npm:
-  branch: master
-  commands:
     # login using environment variables
     - echo -e "$NPM_USERNAME\n$NPM_PASSWORD\n$NPM_EMAIL" | npm login;
     - npm publish;

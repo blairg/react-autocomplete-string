@@ -2,7 +2,7 @@
   "author": "Blair Garrett <blair.garrett1@gmail.com>",
   "name": "react-autocomplete-string",
   "private": false,
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "React Autocomplete Component for String Arrays",
   "repository": {
     "type": "git",
@@ -36,15 +36,16 @@
     "istanbul-instrumenter-loader": "^0.2.0",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
-    "jest-cli": "^12.1.1",
     "karma": "^1.1.1",
     "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^1.0.1",
     "karma-cli": "^1.0.1",
     "karma-coverage": "^1.1.0",
     "karma-jasmine": "^1.0.2",
+    "karma-junit-reporter": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-webpack": "^1.7.0",
+    "lodash": "^4.13.1",
     "react": "^15.1.0",
     "watchify": "^3.7.0",
     "webpack": "^1.13.1"
@@ -60,7 +61,7 @@
     "preupdate-webdriver": "npm install",
     "prepublish": "npm run build",
     "start": "gulp",
-    "test": "karma start karma.conf.js",
+    "test": "karma start karma.conf.js --reporters coverage,junit",
     "update-webdriver": "webdriver-manager update"
   }
 }

@@ -54,16 +54,6 @@
       "react"
     ]
   },
-  "jest": {
-    "scriptPreprocessor": "../node_modules/babel-jest",
-    "rootDir": "__tests__",
-    "unmockedModulePathPatterns": [
-      "react",
-      "react-dom",
-      "react-addons-test-utils"
-    ],
-    "collectCoverage": true
-  },
   "scripts": {
     "build": "babel source --presets babel-preset-es2015 --out-dir distribution",
     "jshint": "jshint ./src gulpfile.js",

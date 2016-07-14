@@ -61,7 +61,7 @@
     "preupdate-webdriver": "npm install",
     "prepublish": "npm run build",
     "start": "gulp",
-    "test": "karma start karma.conf.js --reporters coverage,junit",
+    "test": "karma start karma.conf.js --reporters coverage,junit && karma start karma.conf.js",
     "update-webdriver": "webdriver-manager update"
   }
 }

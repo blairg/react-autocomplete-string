@@ -18,4 +18,5 @@ deployment:
   production:
     tag: /v\d.*/
     commands:
+      - ./ci/npm-login.sh
       - npm publish;

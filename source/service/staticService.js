@@ -1,13 +1,13 @@
 'use strict';
 
 //Helper methods for the Autocomplete control to allow it to be tested properly.
-var autocompleteHelper = new Object();
+var staticService = new Object();
 
-autocompleteHelper.isCaseSenstive = function(caseValue){
+staticService.isCaseSenstive = function(caseValue){
   return (caseValue !== undefined) ? caseValue : false;
 };
 
-autocompleteHelper.replaceAll = function(valueToFind, stringToReplaceValueIn, caseSensitive){
+staticService.replaceAll = function(valueToFind, stringToReplaceValueIn, caseSensitive){
   var caseSensitive = this.isCaseSenstive(caseSensitive);
   var caseSensitiveFlag = caseSensitive ? 'g' : 'i';
 
@@ -18,7 +18,7 @@ autocompleteHelper.replaceAll = function(valueToFind, stringToReplaceValueIn, ca
   return returnValue;
 };
 
-autocompleteHelper.findMatchesInArray = function(valueToFind, caseSensitive, listOfValues, numResultsToReturn){
+staticService.findMatchesInArray = function(valueToFind, caseSensitive, listOfValues, numResultsToReturn){
 
     var foundValues = [];
     var listOfValues = listOfValues.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
@@ -49,7 +49,7 @@ autocompleteHelper.findMatchesInArray = function(valueToFind, caseSensitive, lis
     return foundValues;
 };
 
-autocompleteHelper.findMatchesStartsWithInArray = function(valueToFind, caseSensitive, listOfValues, numResultsToReturn){
+staticService.findMatchesStartsWithInArray = function(valueToFind, caseSensitive, listOfValues, numResultsToReturn){
 
   var foundValues = [];
   var foundStartingLetter = false;
@@ -88,14 +88,14 @@ autocompleteHelper.findMatchesStartsWithInArray = function(valueToFind, caseSens
 
 };
 
-autocompleteHelper.startsWithSurrondEm = function(valueToFind, fullValue){
+staticService.startsWithSurrondEm = function(valueToFind, fullValue){
 
     var getStartingChars = fullValue.substring(0, valueToFind.length);
     return "<em data='" + fullValue + "'>" + getStartingChars + "</em>" + fullValue.substring(valueToFind.length);
 
 };
 
-autocompleteHelper.numberOfKeyStrokesReached = function(keyedValue, minimumNumberOfStrokesReached){
+staticService.numberOfKeyStrokesReached = function(keyedValue, minimumNumberOfStrokesReached){
 
     if(keyedValue === undefined || minimumNumberOfStrokesReached === undefined || isNaN(minimumNumberOfStrokesReached))
     {
@@ -105,7 +105,7 @@ autocompleteHelper.numberOfKeyStrokesReached = function(keyedValue, minimumNumbe
     return keyedValue.length >= minimumNumberOfStrokesReached;
 };
 
-autocompleteHelper.isListOrObject = function(value)
+staticService.isListOrObject = function(value)
 {
     if(value.constructor.name === 'Object')
     {
@@ -126,7 +126,7 @@ autocompleteHelper.isListOrObject = function(value)
     return "invalid";
 };
 
-autocompleteHelper.areAllValuesStrings = function(values)
+staticService.areAllValuesStrings = function(values)
 {
     for(var i = 0; i < values.length; i++)
     {
@@ -139,7 +139,7 @@ autocompleteHelper.areAllValuesStrings = function(values)
     return true;
 };
 
-autocompleteHelper.areAllKeysStrings = function(values)
+staticService.areAllKeysStrings = function(values)
 {
     var nonStrings = false;
 
@@ -158,4 +158,4 @@ autocompleteHelper.areAllKeysStrings = function(values)
     return nonStrings ? false : true;
 };
 
-module.exports = autocompleteHelper;
+module.exports = staticService;

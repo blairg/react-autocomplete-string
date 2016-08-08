@@ -6,7 +6,7 @@
 'use strict';
  
 import React from 'react';
-import AutoCompleteHelper from './autocomplete-helper';
+import AutoCompleteHelper from '../service/staticService';
 
  module.exports = class AutoComplete extends React.Component {
 

@@ -2,20 +2,20 @@
 //jest.autoMockOff();
 //jest.dontMock('../source/autocomplete-helper');
 
-var autocompleteHelper = require('../source/autocomplete-helper');
+var staticService = require('../../source/service/staticService');
 
 describe('isCaseSenstive tests', function() {
 
  it('returns true for case sensitive', function() {
-   expect(autocompleteHelper.isCaseSenstive(true)).toBe(true);
+   expect(staticService.isCaseSenstive(true)).toBe(true);
  });
 
  it('returns false for case sensitive', function() {
-   expect(autocompleteHelper.isCaseSenstive(false)).toBe(false);
+   expect(staticService.isCaseSenstive(false)).toBe(false);
  });
 
  it('returns false for case sensitive if no value is passed', function() {
-   expect(autocompleteHelper.isCaseSenstive()).toBe(false);
+   expect(staticService.isCaseSenstive()).toBe(false);
  });
 
 });
@@ -23,23 +23,23 @@ describe('isCaseSenstive tests', function() {
 describe('replaceAll tests', function() {
 
  it('should find Hud in Huddersfield - case insensitive', function() {
-   expect(autocompleteHelper.replaceAll("Hud", "Huddersfield")).toBe("<em data='Huddersfield'>Hud</em>dersfield");
+   expect(staticService.replaceAll("Hud", "Huddersfield")).toBe("<em data='Huddersfield'>Hud</em>dersfield");
  });
 
  it('should find Hud in Huddersfield - case sensitive', function() {
-   expect(autocompleteHelper.replaceAll("Hud", "Huddersfield", true)).toBe("<em data='Huddersfield'>Hud</em>dersfield");
+   expect(staticService.replaceAll("Hud", "Huddersfield", true)).toBe("<em data='Huddersfield'>Hud</em>dersfield");
  });
 
  it('should not find Hud in Huddersfield - case sensitive', function() {
-   expect(autocompleteHelper.replaceAll("hud", "Huddersfield", true)).toBe("Huddersfield");
+   expect(staticService.replaceAll("hud", "Huddersfield", true)).toBe("Huddersfield");
  });
 
  it('should find field in Huddersfield - case sensitive', function() {
-   expect(autocompleteHelper.replaceAll("field", "Huddersfield", true)).toBe("Hudders<em data='Huddersfield'>field</em>");
+   expect(staticService.replaceAll("field", "Huddersfield", true)).toBe("Hudders<em data='Huddersfield'>field</em>");
  });
 
  it('should find field in Huddersfield - case insensitive', function() {
-   expect(autocompleteHelper.replaceAll("field", "Huddersfield")).toBe("Hudders<em data='Huddersfield'>field</em>");
+   expect(staticService.replaceAll("field", "Huddersfield")).toBe("Hudders<em data='Huddersfield'>field</em>");
  });
 
 });
@@ -54,7 +54,7 @@ describe('findMatchesInArray tests', function() {
       var caseSensitive = true;
       var numResultsToReturn = 1;
       var valueToFind = "I'm not in here";
-      var foundValues = autocompleteHelper.findMatchesInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+      var foundValues = staticService.findMatchesInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
       expect(foundValues.length).toBe(0);
       expect(foundValues.indexOf(valueToFind) > -1).toBe(false);
@@ -64,7 +64,7 @@ describe('findMatchesInArray tests', function() {
       var caseSensitive = true;
       var numResultsToReturn = 1;
       var valueToFind = "Leeds";
-      var foundValues = autocompleteHelper.findMatchesInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+      var foundValues = staticService.findMatchesInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
       expect(foundValues.length).toBe(1);
       expect(foundValues.indexOf(valueToFind) > -1).toBe(true);
@@ -74,7 +74,7 @@ describe('findMatchesInArray tests', function() {
       var caseSensitive = false;
       var numResultsToReturn = 1;
       var valueToFind = "Leeds";
-      var foundValues = autocompleteHelper.findMatchesInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+      var foundValues = staticService.findMatchesInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
       expect(foundValues.length).toBe(1);
       expect(foundValues.indexOf(valueToFind) > -1).toBe(true);
@@ -84,7 +84,7 @@ describe('findMatchesInArray tests', function() {
       var caseSensitive = true;
       var numResultsToReturn = 10;
       var valueToFind = "H";
-      var foundValues = autocompleteHelper.findMatchesInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+      var foundValues = staticService.findMatchesInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
       expect(foundValues.length).toBe(7);
       expect(foundValues.indexOf('Huddersfield') > -1).toBe(true);
@@ -102,7 +102,7 @@ describe('findMatchesInArray tests', function() {
         var numResultsToReturn = 1;
         var valueToFind = "Le";
         var values = ['Leeds', 'Leicester'];
-        var foundValues = autocompleteHelper.findMatchesInArray(valueToFind, caseSensitive, values, numResultsToReturn);
+        var foundValues = staticService.findMatchesInArray(valueToFind, caseSensitive, values, numResultsToReturn);
 
         expect(foundValues.length).toBe(1);
         expect(foundValues.indexOf('Leeds') > -1).toBe(true);
@@ -120,7 +120,7 @@ describe('findMatchesStartsWithInArray tests', function() {
       var caseSensitive = true;
       var numResultsToReturn = 5;
       var valueToFind = "Not in the list";
-      var foundValues = autocompleteHelper.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+      var foundValues = staticService.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
       expect(foundValues.length).toBe(0);
       expect(foundValues.indexOf(valueToFind) > -1).toBe(false);
@@ -130,7 +130,7 @@ describe('findMatchesStartsWithInArray tests', function() {
       var caseSensitive = true;
       var numResultsToReturn = 5;
       var valueToFind = "A";
-      var foundValues = autocompleteHelper.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+      var foundValues = staticService.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
       expect(foundValues.length).toBe(2);
       expect(foundValues.indexOf("Aberdeen") > -1).toBe(true);
@@ -141,7 +141,7 @@ describe('findMatchesStartsWithInArray tests', function() {
         var caseSensitive = true;
         var numResultsToReturn = 1;
         var valueToFind = "A";
-        var foundValues = autocompleteHelper.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+        var foundValues = staticService.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
         expect(foundValues.length).toBe(1);
         expect(foundValues.indexOf("Aberdeen") > -1).toBe(true);
@@ -151,7 +151,7 @@ describe('findMatchesStartsWithInArray tests', function() {
      var caseSensitive = false;
      var numResultsToReturn = 5;
      var valueToFind = "alm";
-     var foundValues = autocompleteHelper.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+     var foundValues = staticService.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
      expect(foundValues.length).toBe(1);
      expect(foundValues.indexOf("Almondbury") > -1).toBe(true);
@@ -161,7 +161,7 @@ describe('findMatchesStartsWithInArray tests', function() {
       var caseSensitive = true;
       var numResultsToReturn = 10;
       var valueToFind = "H";
-      var foundValues = autocompleteHelper.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
+      var foundValues = staticService.findMatchesStartsWithInArray(valueToFind, caseSensitive, testValues, numResultsToReturn);
 
       expect(foundValues.length).toBe(7);
       expect(foundValues.indexOf('Huddersfield') > -1).toBe(true);
@@ -181,7 +181,7 @@ describe('startsWithSurrondEm tests', function() {
 
       var valueToFind = "Alm";
       var valueToSurrond = "Almondbury";
-      var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
+      var surrondedValue = staticService.startsWithSurrondEm(valueToFind, valueToSurrond);
 
       expect(surrondedValue).toBe("<em data='Almondbury'>Alm</em>ondbury");
 
@@ -191,7 +191,7 @@ describe('startsWithSurrondEm tests', function() {
 
       var valueToFind = "Almondbury";
       var valueToSurrond = "Almondbury";
-      var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
+      var surrondedValue = staticService.startsWithSurrondEm(valueToFind, valueToSurrond);
 
       expect(surrondedValue).toBe("<em data='Almondbury'>Almondbury</em>");
 
@@ -201,7 +201,7 @@ describe('startsWithSurrondEm tests', function() {
 
       var valueToFind = "le";
       var valueToSurrond = "lee";
-      var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
+      var surrondedValue = staticService.startsWithSurrondEm(valueToFind, valueToSurrond);
 
       expect(surrondedValue).toBe("<em data='lee'>le</em>e");
 
@@ -211,7 +211,7 @@ describe('startsWithSurrondEm tests', function() {
 
       var valueToFind = "HALIFA";
       var valueToSurrond = "HALIFAX";
-      var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
+      var surrondedValue = staticService.startsWithSurrondEm(valueToFind, valueToSurrond);
 
       expect(surrondedValue).toBe("<em data='HALIFAX'>HALIFA</em>X");
 
@@ -221,7 +221,7 @@ describe('startsWithSurrondEm tests', function() {
 
       var valueToFind = "ha";
       var valueToSurrond = "HALIFAX";
-      var surrondedValue = autocompleteHelper.startsWithSurrondEm(valueToFind, valueToSurrond);
+      var surrondedValue = staticService.startsWithSurrondEm(valueToFind, valueToSurrond);
 
       expect(surrondedValue).toBe("<em data='HALIFAX'>HA</em>LIFAX");
 
@@ -235,7 +235,7 @@ describe('numberOfKeyStrokesReached tests', function() {
 
       var keyedValue = "Holm";
       var minimumNumberOfStrokesReached = 5;
-      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+      var minimumReached = staticService.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
 
       expect(minimumReached).toBe(false);
 
@@ -245,7 +245,7 @@ describe('numberOfKeyStrokesReached tests', function() {
 
       var keyedValue = "Hol";
       var minimumNumberOfStrokesReached = 3;
-      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+      var minimumReached = staticService.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
 
       expect(minimumReached).toBe(true);
 
@@ -255,7 +255,7 @@ describe('numberOfKeyStrokesReached tests', function() {
 
       var keyedValue = "Hol";
       var minimumNumberOfStrokesReached = 2;
-      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+      var minimumReached = staticService.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
 
       expect(minimumReached).toBe(true);
 
@@ -265,7 +265,7 @@ describe('numberOfKeyStrokesReached tests', function() {
 
       var keyedValue = undefined;
       var minimumNumberOfStrokesReached = 2;
-      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+      var minimumReached = staticService.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
 
       expect(minimumReached).toBe(false);
 
@@ -275,7 +275,7 @@ describe('numberOfKeyStrokesReached tests', function() {
 
       var keyedValue = "Hol";
       var minimumNumberOfStrokesReached = undefined;
-      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+      var minimumReached = staticService.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
 
       expect(minimumReached).toBe(false);
 
@@ -285,7 +285,7 @@ describe('numberOfKeyStrokesReached tests', function() {
 
       var keyedValue = "Hol";
       var minimumNumberOfStrokesReached = "Not a number";
-      var minimumReached = autocompleteHelper.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
+      var minimumReached = staticService.numberOfKeyStrokesReached(keyedValue, minimumNumberOfStrokesReached);
 
       expect(minimumReached).toBe(false);
 
@@ -298,7 +298,7 @@ describe('flat list or json object test', function() {
   it('should return "list"', function() {
 
       var list = ['Leeds', 'Manchester'];
-      var type = autocompleteHelper.isListOrObject(list);
+      var type = staticService.isListOrObject(list);
 
       expect(type).toBe('list');
 
@@ -308,7 +308,7 @@ describe('flat list or json object test', function() {
 
       var list = {'Leeds':'http://localhost:3000/town/Leeds', 'Manchester':'http://localhost:3000/town/Manchester',
                   'Bradford':'http://localhost:3000/town/Bradford'};
-      var type = autocompleteHelper.isListOrObject(list);
+      var type = staticService.isListOrObject(list);
 
       expect(type).toBe('object');
 
@@ -318,23 +318,23 @@ describe('flat list or json object test', function() {
 
       var invalidType = 'invalid';
       var value = 7;
-      var type = autocompleteHelper.isListOrObject(value);
+      var type = staticService.isListOrObject(value);
       expect(type).toBe(invalidType);
 
       value = 1.5;
-      type = autocompleteHelper.isListOrObject(value);
+      type = staticService.isListOrObject(value);
       expect(type).toBe(invalidType);
 
       value = "Wakefield";
-      type = autocompleteHelper.isListOrObject(value);
+      type = staticService.isListOrObject(value);
       expect(type).toBe(invalidType);
 
       value = false;
-      type = autocompleteHelper.isListOrObject(value);
+      type = staticService.isListOrObject(value);
       expect(type).toBe(invalidType);
 
       value = new Date();
-      type = autocompleteHelper.isListOrObject(value);
+      type = staticService.isListOrObject(value);
       expect(type).toBe(invalidType);
 
   });
@@ -346,7 +346,7 @@ describe('check array list tests', function() {
   it('should return true as all values are strings', function() {
 
       var list = ['Leeds', 'Manchester'];
-      var allStrings = autocompleteHelper.areAllValuesStrings(list);
+      var allStrings = staticService.areAllValuesStrings(list);
 
       expect(allStrings).toBe(true);
 
@@ -355,7 +355,7 @@ describe('check array list tests', function() {
   it('should return false as list contains a number', function() {
 
       var list = ['Leeds', 2];
-      var allStrings = autocompleteHelper.areAllValuesStrings(list);
+      var allStrings = staticService.areAllValuesStrings(list);
 
       expect(allStrings).toBe(false);
 
@@ -364,7 +364,7 @@ describe('check array list tests', function() {
   it('should return false as list contains a boolean', function() {
 
       var list = ['Leeds', 'Manchester', true, 'Huddersfield'];
-      var allStrings = autocompleteHelper.areAllValuesStrings(list);
+      var allStrings = staticService.areAllValuesStrings(list);
 
       expect(allStrings).toBe(false);
 
@@ -378,7 +378,7 @@ describe('check object tests', function() {
 
       var list = {'Leeds':'http://localhost:3000/town/Leeds', 'Manchester':'http://localhost:3000/town/Manchester',
                   'Bradford':'http://localhost:3000/town/Bradford'};
-      var allStrings = autocompleteHelper.areAllKeysStrings(list);
+      var allStrings = staticService.areAllKeysStrings(list);
 
       expect(allStrings).toBe(true);
 
@@ -388,7 +388,7 @@ describe('check object tests', function() {
 
       var list = {'Leeds':'http://localhost:3000/town/Leeds', 'Manchester':'http://localhost:3000/town/Manchester',
                   0:'http://localhost:3000/town/Bradford'};
-      var allStrings = autocompleteHelper.areAllKeysStrings(list);
+      var allStrings = staticService.areAllKeysStrings(list);
 
       expect(allStrings).toBe(false);
 
@@ -398,7 +398,7 @@ describe('check object tests', function() {
 
       var list = {'Leeds':'http://localhost:3000/town/Leeds', true:'http://localhost:3000/town/Manchester',
                   'Bradford':'http://localhost:3000/town/Bradford'};
-      var allStrings = autocompleteHelper.areAllKeysStrings(list);
+      var allStrings = staticService.areAllKeysStrings(list);
 
       expect(allStrings).toBe(false);
 

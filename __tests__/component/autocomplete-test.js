@@ -1,18 +1,18 @@
-//__tests__/react-autocomplete-string-test.js
+//__tests__/autocomplete-test.js
 'use strict';
-//jest.dontMock('../source/react-autocomplete-string.jsx');
-//jest.dontMock('../source/autocomplete-helper.js');
+//jest.dontMock('../source/autocomplete.jsx');
+//jest.dontMock('../source/staticService.js');
 
 var React = require('react');
 var TestUtils = require('react-addons-test-utils');
-var AutoComplete = require('../source/react-autocomplete-string.jsx');
+var AutoComplete = require('../../source/component/autocomplete.jsx');
 
 
 var values = ["Aberdeen", "Almondbury", "Bath", "Bradford", "Basingstoke", "Huddersfield",
                 "Halifax", "Hull", "Honley", "Harrogate", "Hadfield", "Holmfirth", "London",
                 "Leeds", "Manchester", "Nottingham", "Plymouth", "Wolverhampton"];
 
-describe('react-autocomplete-string - anywhere tests', function() {
+describe('autocomplete - anywhere tests', function() {
 
   var autocompleteNode =( <AutoComplete values={values} numresults={10} search={'anywhere'} casesensitive={false} minimumkeystrokes={2}
                                           placeholder={'City name contains...'} />);
@@ -79,7 +79,7 @@ describe('react-autocomplete-string - anywhere tests', function() {
 
 });
 
-describe('react-autocomplete-string - startswith tests', function() {
+describe('autocomplete - startswith tests', function() {
 
   const autocompleteNode = (<AutoComplete values={values} numresults={10} search={'startswith'} casesensitive={false} minimumkeystrokes={1}
                                           placeholder={'City name starts with...'} />);

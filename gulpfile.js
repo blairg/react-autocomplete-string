@@ -5,8 +5,9 @@
 
 'use strict';
 
-// Load some modules which are installed through NPM.
-const eslint = require('gulp-eslint');
+const esLint = require('gulp-eslint');
+const gulp = require('gulp');
+
 
 // Define some paths.
 const paths = {
@@ -15,7 +16,7 @@ const paths = {
 
 gulp.task('eslint', function() {
   return gulp.src(paths.js)
-    .pipe(eslint());
+    .pipe(esLint());
 });
 
 // Rerun tasks whenever a file changes.
@@ -23,8 +24,6 @@ gulp.task('watch', function() {
   gulp.watch(paths.js, ['js']);
 });
 
-
-gulp.task('build', function(callback) {
-  runSequence(['eslint'], callback);
-});
 gulp.task('default', ['watch']);
+gulp.task('build', ['eslint']);
+

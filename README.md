@@ -1,5 +1,9 @@
 # React Autocomplete String
 
+## DISCONTINUED - 12/08/2016
+As of the above date I am no longer supporting this project. Any info, please get in touch [email](mailto:blair.garrett1@gmail.com).
+
+
 [Source Code - Github](https://github.com/blairg/react-autocomplete-string)
 
 [Demo Site](http://139.59.167.176/)
